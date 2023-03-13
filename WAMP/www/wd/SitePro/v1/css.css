@@ -1,0 +1,39 @@
+h1 {
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    width: 100%;
+    overflow: hidden;
+}
+
+article {
+    float: right;
+    width: 89%;
+}
+
+article > div {
+    margin: 1em;
+}
+
+nav {
+    float: left;
+    width: 10%;
+}
+
+article, nav {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #eee;
+    color: #444;
+}
+
+a:link#currentPage, a:visited#currentPage {
+    font-weight: bolder;
+    text-decoration: none;
+    outline: none;
+}
