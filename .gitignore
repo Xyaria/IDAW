@@ -2,8 +2,12 @@
 
 /PDF/*
 *.bat
+
 /WAMP/*
-!/WAMP/www/wd/*
+!/WAMP/www/
+
+/WAMP/www/*
+!/WAMP/www/wd/
 
 # CakePHP 3
 
