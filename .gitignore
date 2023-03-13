@@ -1,3 +1,10 @@
+# Personnal
+
+/PDF/*
+*.bat
+/WAMP/*
+!/WAMP/www/wd/*
+
 # CakePHP 3
 
 /vendor/*
