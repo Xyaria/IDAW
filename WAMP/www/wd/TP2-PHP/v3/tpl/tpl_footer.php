@@ -1,3 +1,3 @@
 <footer>
-    <div>Copyright (c)2023 - Leane H</div>
+    <div>Copyright (c)<?php echo date("Y");?> - Léane H</div>
 </footer>

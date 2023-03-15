@@ -17,7 +17,7 @@
 ?>
         <article>
             <?php
-                $pageCore = "$language/$currentPage.php";
+                $pageCore = "vues/$language/$currentPage.php";
                 if(is_readable($pageCore)) {
                     require_once($pageCore);
                 }

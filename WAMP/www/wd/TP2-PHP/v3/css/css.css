@@ -4,6 +4,7 @@ body {
     display: grid;
     grid-template-rows: auto 1fr auto;
     background: linear-gradient(to bottom left,rgb(255, 248, 235), 70%, rgb(255, 225, 172));
+    font-family: Verdana, sans-serif;
 }
 
 header, footer {
@@ -11,15 +12,9 @@ header, footer {
     margin: 0 1em;
 }
 
-footer > div {
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px 0;
-    background-color: #efe;
-}
+/*-----------------------------------*/
 
-header > h1 {
+footer > div, header > h1 {
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -40,8 +35,6 @@ hr {
     display: flex;
 }
 
-/*-----------------------------------*/
-
 nav {
     width: 140px;
     height: fit-content;
@@ -50,6 +43,8 @@ nav {
 nav > ul {
     margin: 20px auto;
 }
+
+/*-----------------------------------*/
 
 article {
     flex-grow: 15;
@@ -60,7 +55,22 @@ article > div {
     display: inline-block;
     margin: 1em;
     text-align: left;
-    max-width: 80%;
+    width: 80%;
+}
+
+article  h1 {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #efe;
+    box-shadow: 2px 2px 2px #ccc;
+
+}
+
+article img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 article, nav {
