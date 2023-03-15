@@ -5,15 +5,19 @@
         $currentPage = $_GET['page'];
     }
 
+    if(isset($_GET['lang'])) {
+        $language = $_GET['lang'];
+    }
+
     require_once("./tpl/tpl_bandeau.php");
-    getHeader($currentPage);
+    getHeader($currentPage, $language);
     
     require_once("./tpl/tpl_nav.php");
-    renderMenuToHTML($currentPage);
+    renderMenuToHTML($currentPage, $language);
 ?>
         <article>
             <?php
-                $pageCore = "$currentPage.php";
+                $pageCore = "$language/$currentPage.php";
                 if(is_readable($pageCore)) {
                     require_once($pageCore);
                 }

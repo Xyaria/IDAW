@@ -3,12 +3,12 @@ body {
     margin: 0;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    background-color: rgb(255, 248, 235);
+    background: linear-gradient(to bottom left,rgb(255, 248, 235), 70%, rgb(255, 225, 172));
 }
 
 header, footer {
     min-height: 50px;
-    width: 100%;
+    margin: 0 1em;
 }
 
 footer > div {
@@ -31,6 +31,10 @@ ul {
     list-style: none;
 }
 
+hr {
+    margin: auto;
+}
+
 .container {
     width: 100%;
     display: flex;
@@ -39,17 +43,24 @@ ul {
 /*-----------------------------------*/
 
 nav {
-    width: 130px;
-    padding-right: 2em;
+    width: 140px;
     height: fit-content;
+}
+
+nav > ul {
+    margin: 20px auto;
 }
 
 article {
     flex-grow: 15;
+    text-align: center;
 }
 
 article > div {
+    display: inline-block;
     margin: 1em;
+    text-align: left;
+    max-width: 80%;
 }
 
 article, nav {
