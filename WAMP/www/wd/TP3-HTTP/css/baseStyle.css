@@ -1,0 +1,7 @@
+#login_form {
+    display: block;
+}
+
+a, #disconnect {
+    display: none;
+}

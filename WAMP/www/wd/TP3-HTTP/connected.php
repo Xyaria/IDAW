@@ -13,7 +13,9 @@
         
         if(array_key_exists($tryLogin, $users) && $users[$tryLogin]==$tryPwd) {
             $successfullyLogged = true;
-            $login = $tryLogin;
+            // $login = $tryLogin;
+            $_SESSION['login'] = $tryLogin;
+            $_SESSION['password'] = $tryPwd;
         } 
         else {
             $errorText = "Erreur de login/password";
@@ -27,6 +29,20 @@
         echo "<br/>" .$errorText;
     } 
     else {
-        echo "<h1>Bienvenue ".$login."</h1>";
+        echo "<h1>Bienvenue ".$_SESSION['login']."</h1>";
+        echo '<style>
+        #login_form {
+            display: none !important;
+        }
+        
+        a, #disconnect {
+            display: block !important;
+        }
+        </style>';
     }
 ?>
+
+<a href="otherpage.php">Autre page</a>
+<form action="index.php" method="POST">
+    <input id="disconnect" type="submit" name="disconnect" value="Déconnexion"/>
+</form>
