@@ -43,7 +43,8 @@ INSERT INTO `users` (`id`, `name`, `mail`) VALUES
 (1, 'riri', 'riri@truc.fr'),
 (2, 'fifi', 'fifi@truc.fr'),
 (3, 'loulou', 'loulou@truc.fr'),
-(4, 'donald', 'donald@truc.fr');
+(4, 'donald', 'donald@truc.fr'),
+(5, 'picsou', 'picsou@truc.fr');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
