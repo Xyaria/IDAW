@@ -2,8 +2,18 @@ table {
     border-top: 1px solid black; 
     border-bottom: 1px solid black; 
     text-align: center;
+    display: inline-block;
 }
 
 td {
     padding: 0 1em;
+}
+
+input:not(.radio) {
+    margin: 0.5em 0;
+}
+
+.container {
+    display: inline-block;
+    margin: 0 2em;
 }

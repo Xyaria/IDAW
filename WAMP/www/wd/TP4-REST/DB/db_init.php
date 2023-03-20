@@ -10,4 +10,6 @@
     } catch (PDOException $erreur) {
         echo ('Erreur : '.$erreur->getMessage());
     }
+
+    echo "<br><a href='../users.php'>Back to page</a>";
 ?>
