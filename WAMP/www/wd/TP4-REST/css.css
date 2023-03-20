@@ -11,6 +11,8 @@ td {
 
 input:not(.radio) {
     margin: 0.5em 0;
+    border: 0.5px solid gray;
+    border-radius: 8%;
 }
 
 .container {

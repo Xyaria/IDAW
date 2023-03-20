@@ -13,6 +13,49 @@
     require_once('./DB/db_pdo.php');
     $pdo = getPDO();
 
+    echo $actionResult = (function () {
+        $pdo = getPDO();
+        if(isset($_POST['add'])){
+            if(!isset($_POST['userName']) OR !isset($_POST['userMail'])) {
+                return "Informations manquantes, impossible d'ajouter l'utilisateur";
+            }
+            else{
+                $request = $pdo->prepare("INSERT INTO `users` (`name`, `mail`) VALUES ('" .$_POST['userName']. "', '" .$_POST['userMail']. "')");
+                $request->execute();
+                return "Utilisateur " .$_POST['userName']. " ajouté";
+            }
+        }
+        if(isset($_POST['select'])){
+            if(isset($_POST['modify'])){
+                if(!isset($_POST['userName']) AND !isset($_POST['userMail'])){
+                    return "Entrer au moins une information à modifier";
+                }
+                else {
+                    $reqBody = NULL;
+                    if(isset($_POST['userName']) AND $_POST['userName'] != NULL){
+                        $reqBody = "`name`='" .$_POST['userName']. "'";
+                    }
+                    if(isset($_POST['userMail']) AND $_POST['userMail'] != NULL){
+                        if($reqBody !== NULL){
+                            $reqBody .= ", `mail`='" .$_POST['userMail']. "'";
+                        }
+                        else{
+                            $reqBody = "`mail`='" .$_POST['userMail']. "'";
+                        }
+                    }
+                    $request = $pdo->prepare("UPDATE `users` SET ".$reqBody." WHERE `id`=" .$_POST['select']);
+                    $request->execute();
+                    return "Utilisateur " .$_POST['select']. " modifié";
+                }
+            }
+            else if(isset($_POST['delete'])){
+                $request = $pdo->prepare("DELETE FROM `users` WHERE `id`=" .$_POST['select']);
+                $request->execute();
+                return "Utilisateur " .$_POST['select']. " supprimé";
+            }
+        }
+    })();
+
     $request = $pdo->prepare("SELECT * FROM users");
     $request->execute();
     $dbRows = $request->fetchAll();
@@ -20,40 +63,6 @@
     $request = $pdo->prepare("DESCRIBE users");
     $request->execute();
     $dbColumns = $request->fetchAll(PDO::FETCH_COLUMN);
-
-    if(isset($_POST['add'])){
-        if(!isset($_POST['userName']) OR !isset($_POST['userMail'])) {
-            echo "Informations manquantes, impossible d'ajouter l'utilisateur";
-        }
-        else{
-            $request = $pdo->prepare("INSERT INTO `users` (`name`, `mail`) VALUES ('" .$_POST['userName']. "', '" .$_POST['userMail']. "')");
-            $request->execute();
-            echo "Utilisateur " .$_POST['userName']. " ajouté";
-        }
-    }
-    else if(isset($_POST['select'])){
-        if(isset($_POST['modify'])){
-            if(!isset($_POST['userName']) AND !isset($_POST['userMail'])){
-                echo "Entrer au moins une information à modifier";
-            }
-            else {
-                if(isset($_POST['userName']) AND $_POST['userName'] != NULL){
-                    $request = $pdo->prepare("UPDATE `users` SET `name`='" .$_POST['userName']. "' WHERE `id`=" .$_POST['select']);
-                    $request->execute();
-                }
-                if(isset($_POST['userMail']) AND $_POST['userMail'] != NULL){
-                    $request = $pdo->prepare("UPDATE `users` SET `mail`='" .$_POST['userMail']. "' WHERE `id`=" .$_POST['select']);
-                    $request->execute();
-                }
-                echo "Utilisateur " .$_POST['select']. " modifié";
-            }
-        }
-        else if(isset($_POST['delete'])){
-            $request = $pdo->prepare("DELETE FROM `users` WHERE `id`=" .$_POST['select']);
-            $request->execute();
-            echo "Utilisateur " .$_POST['select']. " supprimé";
-        }
-    }
 
     echo "<form action='users.php' method='POST'>
     <table>
