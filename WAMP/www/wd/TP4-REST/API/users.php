@@ -9,12 +9,12 @@
         echo json_encode($error);
     }
 
-    function getUserID($user){
+    function getUserByValues($user){
         global $pdo;
         $request = $pdo->prepare("SELECT `id` FROM users WHERE `name` = '" .$user['nom']. "' AND `mail` = '" .$user['mail']. "'");
         $request->execute();
         $user = $request->fetch();
-        return $user['id'];
+        return $user;
     }
 
     function getUserByID($id){
@@ -48,7 +48,8 @@
             return;
         }
 
-        $id = getUserID($user);
+        $user = getUserByValues($user);
+        $id = $user['id'];
 
         if($id != NULL){
             error(303, "User already exist, location: http://localhost/wd/TP4-REST/API/users.php/" .$id);
@@ -58,9 +59,10 @@
         $request = $pdo->prepare("INSERT INTO `users` (`name`, `mail`) VALUES ('" .$user['nom']. "', '" .$user['mail']. "')");
         $request->execute();
 
-        $id = getUserID($user);
+        $user = getUserByValues($user);
+        $id = $user['id'];
         
-        header("Location: http://localhost/wd/TP4-REST/API/users.php/" .$id);
+        echo json_encode(["Location" => "http://localhost/wd/TP4-REST/API/users.php/$id"]);
     }
 
     function updateUsers(){
@@ -100,7 +102,7 @@
         $request = $pdo->prepare("UPDATE `users` SET ".$reqBody." WHERE `id`=" .$id);
         $request->execute();
 
-        header("Location: http://localhost/wd/TP4-REST/API/users.php/" .$id);
+        echo json_encode(["Location" => "http://localhost/wd/TP4-REST/API/users.php/" .$id]);
     }
 
     function deleteUsers(){
