@@ -1,12 +1,31 @@
 <?php
     require_once("../config.php");
     require_once("../DB/db_pdo.php");
+
+    header("Content-type: application/json; charset=UTF-8");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+    header("Access-Control-Max-Age: 3600");
+
     $pdo = getPDO();
 
-    function error($status, $message){
+    function jsonMessage($status, $message, $other = NULL){
         http_response_code($status);
-        $error = ["status" => $status, "message" => $message];
-        echo json_encode($error);
+        $jsonMessage = ["status" => $status, "message" => $message];
+
+        if(isset($other)){
+            foreach($other as $key => $value){
+                $jsonMessage[$key] = $value;
+            }
+        }
+
+        echo json_encode($jsonMessage);
+    }
+
+    function checkID($id){
+        if(is_numeric($id)){
+            return true;
+        }
+        return false;
     }
 
     function getUserByValues($user){
@@ -21,14 +40,28 @@
         global $pdo;
         $request = $pdo->prepare("SELECT * FROM users WHERE `id` = '" .$id. "'");
         $request->execute();
-        return $request->fetch();
+        $user = $request->fetch(PDO::FETCH_ASSOC);
+        return $user;
     }
 
     function getUsers(){
         global $pdo;
 
         if(isset($_SERVER['PATH_INFO'])){
-            $user = getUserByID($_SERVER['PATH_INFO']);
+            $id = substr($_SERVER['PATH_INFO'], 1);
+
+            if(!checkID($id)){
+                http_response_code(400);
+                jsonMessage(400, "ID should be numeric");
+                return;
+            }
+
+            $user = getUserByID($id);
+            if(!$user){
+                jsonMessage(404, "User not found");
+                return;
+            }
+
             echo json_encode($user);
             return;
         }
@@ -44,15 +77,13 @@
         $user = json_decode(file_get_contents("php://input"), true);
 
         if(!isset($user['nom']) OR !isset($user['mail'])){
-            error(400, "Missing parameter");
+            jsonMessage(400, "Missing parameter");
             return;
         }
 
-        $user = getUserByValues($user);
-        $id = $user['id'];
-
-        if($id != NULL){
-            error(303, "User already exist, location: http://localhost/wd/TP4-REST/API/users.php/" .$id);
+        $db_user = getUserByValues($user);
+        if($db_user != NULL){
+            jsonMessage(303, "User already exist", ["Location" => _API_PATH."/users.php/$id"]);
             return;
         }
 
@@ -62,66 +93,74 @@
         $user = getUserByValues($user);
         $id = $user['id'];
         
-        echo json_encode(["Location" => "http://localhost/wd/TP4-REST/API/users.php/$id"]);
+        jsonMessage(201, "User has been created", ["Location" => _API_PATH."/users.php/$id"]);
     }
 
     function updateUsers(){
         global $pdo;
 
         if(!isset($_SERVER['PATH_INFO'])){
-            error(400, "Missing user ID");
+            jsonMessage(400, "Missing user ID");
             return;
         }
         $id = substr($_SERVER['PATH_INFO'], 1);
 
         $db_user = getUserByID($id);
         if($db_user == NULL){
-            error(404, "User doesn't exist");
+            jsonMessage(404, "User doesn't exist");
             return;
         }
 
         $user = json_decode(file_get_contents("php://input"), true);
 
         if(!isset($user['nom']) AND !isset($user['mail'])){
-           error(400, "Missing parameter");
+           jsonMessage(400, "Missing parameter");
            return;
         }
 
-        $reqBody = NULL;
-        if($user['nom'] != NULL){
+        echo $db_user['mail'], $user['mail'];
+
+        if((($db_user['name'] === $user['nom']) OR (!isset($user['nom']))) AND (($db_user['mail'] === $user['mail']) OR (!isset($user['mail'])))){
+            jsonMessage(200, "Same informations already exists for this user");
+            return;
+        }
+
+        $reqBody = "";
+        if(isset($user['nom'])){
             $reqBody = "`name`='" .$user['nom']. "'";
         }
-        if($user['mail'] != NULL){
-            if($reqBody !== NULL){
-                $reqBody .= ", `mail`='" .$user['mail']. "'";
+        if(isset($user['mail'])){
+            if($reqBody === ""){
+                $reqBody = "`mail`='" .$user['mail']. "'";
             }
             else{
-                $reqBody = "`mail`='" .$user['mail']. "'";
+                $reqBody .= ", `mail`='" .$user['mail']. "'";
             }
         }
         $request = $pdo->prepare("UPDATE `users` SET ".$reqBody." WHERE `id`=" .$id);
         $request->execute();
 
-        echo json_encode(["Location" => "http://localhost/wd/TP4-REST/API/users.php/" .$id]);
+        jsonMessage(200, "User has been updated", ["Location" => _API_PATH."/users.php/" .$id]);
     }
 
     function deleteUsers(){
         global $pdo;
 
         if(!isset($_SERVER['PATH_INFO'])){
-            error(400, "Missing user ID");
+            jsonMessage(400, "Missing user ID");
             return;
         }
         $id = substr($_SERVER['PATH_INFO'], 1);
 
         $db_user = getUserByID($id);
         if($db_user == NULL){
-            error(404, "User doesn't exist");
+            jsonMessage(404, "User doesn't exist");
             return;
         }
 
         $request = $pdo->prepare("DELETE FROM `users` WHERE `id`=" .$id);
         $request->execute();
+        jsonMessage(200, "User has been deleted");
     }
 
     $reqMethod = $_SERVER['REQUEST_METHOD'];
@@ -140,6 +179,6 @@
             deleteUsers();
             break;
         default:
-            echo "405 - Unauthorized Method";
+            jsonMessage(405, "Unauthorized Method");
     };
 ?>

@@ -4,4 +4,5 @@
     define('_MYSQL_DBNAME','tp4-rest');
     define('_MYSQL_USER','root');
     define('_MYSQL_PASSWORD','');
+    define('_API_PATH', 'http://localhost/wd/TP4-REST/API')
 ?>
