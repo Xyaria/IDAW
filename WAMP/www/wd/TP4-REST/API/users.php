@@ -93,7 +93,7 @@
         $user = getUserByValues($user);
         $id = $user['id'];
         
-        jsonMessage(201, "User has been created", ["Location" => _API_PATH."/users.php/$id"]);
+        jsonMessage(201, "User has been created", ["Location" => _API_PATH."/users.php/$id", "User" => getUserByID($id)]);
     }
 
     function updateUsers(){
