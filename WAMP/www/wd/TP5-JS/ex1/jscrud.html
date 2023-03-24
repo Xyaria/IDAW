@@ -15,12 +15,19 @@
             margin-bottom: 100px;
         }
 
-        a {
+        td, th {
+            padding: 0.1em 1em;
+            border: 1px solid black;
+        }
+
+        span {
             text-decoration: underline solid black 1px;
         }
 
-        a:hover {
-            color: blue;
+        span:hover {
+            color: rgb(77, 0, 177);
+            text-decoration: underline solid rgb(77, 0, 177) 1px;
+
         }
 
         #modifyBtn {
@@ -38,7 +45,7 @@
                 <th scope="col">Date de naissance</th>
                 <th scope="col">Aime le cours Web</th>
                 <th scope="col">Remarques</th>
-                <th scope="col">CRUD</th>
+                <th scope="col" colspan="2">CRUD</th>
             </tr>
         </thead>
 
@@ -104,7 +111,7 @@
             let nom = $("#inputNom").val();
             let prenom = $("#inputPrenom").val();
             let birthday = $("#inputNaissance").val();
-            let cours = $("#inputCours").is('checked');
+            let cours = $("#inputCours").prop('checked');
             let rmq = $("#inputRmq").val();
             if(nom == ""){
                 $('#errorMessage').html("Le champ Nom est obligatoire");
@@ -117,8 +124,8 @@
                     <td class="birthday">${birthday}</td>
                     <td class="cours">${cours}</td>
                     <td class="rmq">${rmq}</td>
-                    <td><a onclick="modifyUser(this);">Modifier</a></td>
-                    <td><a onclick="deleteUser(this);">Supprimer</a></td>
+                    <td onclick="addUserToForm(this);"><span>Modifier</span></td>
+                    <td onclick="deleteUser(this);"><span>Supprimer</span></td>
                 </tr>
             `);
 
@@ -130,16 +137,20 @@
         }
 
         // put info in form + show "modify" / hide "sumbit"
-        function modifyUser(userRow){
+        function addUserToForm(modifyBtn){
+            event.preventDefault();
             $('#modifyBtn').css({"display": "block"});
             $('#submitBtn').css({"display": "none"});
             let form = $('#addStudentFrom');
+            let userRow = $(modifyBtn).closest("tr");
 
-            let nom = $(userRow).closest("tr").find(".nom").val();
-            let prenom = $(userRow).closest(".prenom").val();
-            let birthday = $(userRow).closest(".birthday").val();
-            let cours = $(userRow).closest(".cours").val();
-            let rmq = $(userRow).closest(".rmq").val();
+            $(userRow).attr('id', 'modifying');
+
+            let nom = $(userRow).find(".nom").html();
+            let prenom = $(userRow).find(".prenom").html();
+            let birthday = $(userRow).find(".birthday").html();
+            let cours = $(userRow).find(".cours").html();
+            let rmq = $(userRow).find(".rmq").html();
 
             $('#inputNom').val(nom);
             $('#inputPrenom').val(prenom);
@@ -150,7 +161,43 @@
             }
         }
 
+        function modifyUserInfo(){
+            event.preventDefault();
+            let nom = $("#inputNom").val();
+            if(nom == ""){
+                $('#errorMessage').html("Le champ Nom est obligatoire");
+                return;
+            }
+            let prenom = $("#inputPrenom").val();
+            let birthday = $("#inputNaissance").val();
+            let cours = $("#inputCours").prop('checked');
+            let rmq = $("#inputRmq").val();
+
+            let userRow = $('#modifying');
+
+            $(userRow).find(".nom").html(nom);
+            $(userRow).find(".prenom").html(prenom);
+            $(userRow).find(".birthday").html(birthday);
+            $(userRow).find(".rmq").html(rmq);
+            if(cours){
+                $(userRow).find(".cours").html("true");
+            }
+            else{
+                $(userRow).find(".cours").html("false");
+            }
+
+            $('#modifyBtn').css({"display": "none"});
+            $('#submitBtn').css({"display": "block"});
+            $('#inputNom').val("");
+            $('#inputPrenom').val("");
+            $('#inputNaissance').val("");
+            $('#inputRmq').val("");
+            $('#inputCours').prop('checked', false);
+            $(userRow).removeAttr("id");
+        }
+
         function deleteUser(userRow){
+            event.preventDefault();
             $(userRow).closest("tr").remove();
         }
     </script>

@@ -1,6 +1,0 @@
-<div>
-    <p>Placeholder paragraph while my CV is in the making.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur, ipsum eu placerat ullamcorper, ipsum diam scelerisque elit, ut viverra odio diam a nisi. Aenean tempus euismod mauris quis fermentum. Etiam quis nisi magna. Donec pulvinar turpis libero, vitae imperdiet metus molestie sed. Nam felis justo, dictum volutpat lobortis non, vehicula sed urna. Maecenas vulputate, urna in varius ullamcorper, erat lacus imperdiet mi, at faucibus neque elit vitae libero. Sed vitae gravida nibh. Donec nec nisl nec nisi suscipit varius iaculis eget orci. Suspendisse laoreet finibus sem, id euismod lorem euismod quis. Phasellus vitae aliquet felis, et iaculis nulla.</p>
-    <p>Suspendisse potenti. Maecenas euismod ligula non nulla interdum dignissim. Praesent euismod, sapien eget mattis posuere, nulla dolor rhoncus quam, vel aliquet turpis metus ac lacus. Praesent dolor ligula, sollicitudin quis lectus nec, mollis accumsan orci. Aenean mollis velit mauris, nec tempus nulla finibus et. Proin pretium nulla at condimentum lobortis. Vestibulum arcu purus, luctus a urna ut, scelerisque lacinia enim. Fusce sodales nunc maximus posuere fringilla. Integer feugiat est luctus elit commodo elementum eget ut eros.</p>
-</div>
-        
