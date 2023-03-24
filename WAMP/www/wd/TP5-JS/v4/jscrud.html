@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <title>tabletest</title>
+    <style>
+        body { 
+            margin-top: 5em; 
+        }
+
+        .table {
+            margin-top: 100px;
+            margin-bottom: 100px;
+        }
+
+        a {
+            text-decoration: underline solid black 1px;
+        }
+
+        a:hover {
+            color: blue;
+        }
+
+        #modifyBtn {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Date de naissance</th>
+                <th scope="col">Aime le cours Web</th>
+                <th scope="col">Remarques</th>
+                <th scope="col">CRUD</th>
+            </tr>
+        </thead>
+
+        <tbody id="studentsTableBody">
+            <!-- table body -->
+        </tbody>
+    </table>
+
+    <form id="addStudentForm" action="" onsubmit="onFormSubmit();">
+        <div id="errorMessage"></div>
+        <div class="form-group row">
+            <label for="inputNom" class="col-sm-2 col-form-label">Nom*</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="inputNom" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPrenom" class="col-sm-2 col-form-label">Prénom</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="inputPrenom" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputNaissance" class="col-sm-2 col-form-label">Date de naissance</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="inputNaissance" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputCours" class="col-sm-2 col-form-label">Aime le cours Web</label>
+            <div class="col-sm-3">
+                <input type="checkbox" class="form-control" id="inputCours" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputRmq" class="col-sm-2 col-form-label">Remarques</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="inputRmq" >
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <span class="col-sm-2"></span>
+            <div class="col-sm-2">
+                <button type="submit" id="submitBtn" class="btn btn-primary form-control">Submit</button>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <span class="col-sm-2"></span>
+            <div class="col-sm-2">
+                <button type="button" id="modifyBtn" class="btn btn-primary form-control" onclick="modifyUserInfo();">Modify</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        function onFormSubmit() {
+            // prevent the form to be sent to the server
+            event.preventDefault();
+            $('#errorMessage').empty();
+
+            let nom = $("#inputNom").val();
+            let prenom = $("#inputPrenom").val();
+            let birthday = $("#inputNaissance").val();
+            let cours = $("#inputCours").is('checked');
+            let rmq = $("#inputRmq").val();
+            if(nom == ""){
+                $('#errorMessage').html("Le champ Nom est obligatoire");
+                return;
+            }
+            $("#studentsTableBody").append(`
+                <tr>
+                    <td class="nom">${nom}</td>
+                    <td class="prenom">${prenom}</td>
+                    <td class="birthday">${birthday}</td>
+                    <td class="cours">${cours}</td>
+                    <td class="rmq">${rmq}</td>
+                    <td><a onclick="modifyUser(this);">Modifier</a></td>
+                    <td><a onclick="deleteUser(this);">Supprimer</a></td>
+                </tr>
+            `);
+
+            $('#inputNom').val("");
+            $('#inputPrenom').val("");
+            $('#inputNaissance').val("");
+            $('#inputRmq').val("");
+            $('#inputCours').prop('checked', false);
+        }
+
+        // put info in form + show "modify" / hide "sumbit"
+        function modifyUser(userRow){
+            $('#modifyBtn').css({"display": "block"});
+            $('#submitBtn').css({"display": "none"});
+            let form = $('#addStudentFrom');
+
+            let nom = $(userRow).closest("tr").find(".nom").val();
+            let prenom = $(userRow).closest(".prenom").val();
+            let birthday = $(userRow).closest(".birthday").val();
+            let cours = $(userRow).closest(".cours").val();
+            let rmq = $(userRow).closest(".rmq").val();
+
+            $('#inputNom').val(nom);
+            $('#inputPrenom').val(prenom);
+            $('#inputNaissance').val(birthday);
+            $('#inputRmq').val(rmq);
+            if(cours == true){
+                $('#inputCours').prop('checked', true);
+            }
+        }
+
+        function deleteUser(userRow){
+            $(userRow).closest("tr").remove();
+        }
+    </script>
+</body>
+</html>
