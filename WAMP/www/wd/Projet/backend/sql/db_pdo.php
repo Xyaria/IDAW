@@ -1,4 +1,5 @@
 <?php
+    require_once("../config.php");
     function getPDO(){
         $connectionString = "mysql:host=". _MYSQL_HOST;
 

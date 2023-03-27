@@ -10,6 +10,10 @@
 /WAMP/www/*
 !/WAMP/www/wd/
 
+/WAMP/www/wd/Projet/backend/config.php
+
+
+
 # CakePHP 3
 
 /vendor/*
