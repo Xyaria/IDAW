@@ -31,11 +31,29 @@ bla
 ```POST :ROOT/users```
 - Ajoute un utilisateur sur le site
 - Body : informations de l'utilisateur
+    ```JSON
+    {
+        "login": {$login},
+        "mdp": {$mdp},
+        "niveau": {$niveau},
+        "sexe": {$sexe},
+        "naissance": {$naissance}
+    }
+    ```
 - Output : message de confirmation
 
 ```PUT :ROOT/users?id=:ID```
 - Modifie les informations de l'utilisateur à l'ID donnée
 - Body : informations de l'utilisateur :ID
+    ```JSON
+    {
+        ["login": {$login},]
+        ["mdp": {$mdp},]
+        ["niveau": {$niveau},]
+        ["sexe": {$sexe},]
+        ["naissance": {$naissance}]
+    }
+    ```
 - Output : message de confirmation
 
 ```DELETE :ROOT/users?id=:ID```
@@ -50,6 +68,12 @@ bla
 ```POST :ROOT/users/connect```
 - Connecte un utilisateur sur le site
 - Body : informations de l'utilisateur
+    ```JSON
+    {
+        "login": {$login},
+        "mdp": {$mdp}
+    }
+    ```
 - Output : message de confirmation
 
 ---
@@ -59,11 +83,27 @@ bla
 ```POST :ROOT/users/consommation```
 - Ajoute un plat consommé par l'utilisateur connecté
 - Body : informations du plat
+    ```JSON
+    {
+        "id_user": {$id_user},
+        "id_aliment": {$id_aliment},
+        "quantite": {$quantite},
+        "date": {$date}
+    }
+    ```
 - Output : message de confirmation
 
 ```PUT :ROOT/users/consommation?id=:ID```
 - Modifie un plat renseigné par l'utilisateur connecté
-- Body : informations du plat de la consommation :ID
+- Body : informations du plat consommatié :ID
+    ```JSON
+    {
+        "id_user": {$id_user},
+        "id_aliment": {$id_aliment},
+        ["quantite": {$quantite},]
+        ["date": {$date}]
+    }
+    ```
 - Output : message de confirmation
 
 ```GET :ROOT/users/consommation?last=:NB```
