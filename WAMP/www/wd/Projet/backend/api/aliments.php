@@ -1,4 +1,13 @@
 <?php
+
+    /*notes par Corentin
+    * Dans les get d'aliments plus détaillés (get 1 ou get X, pas getALL), 
+    * faudra ajouter les nutriments associés (sinon faut des 
+    * endpoint de l'api spéciale pour mais ça n'a pas de sens)
+    * à voir si on ajoute des colones par défaut (energie, protéine, ...) 
+    * ou si on récupère ça en paramètre json (voire les deux optionss)
+    */
+
     require_once("db_pdo.php");
     require_once("config.php");
 
