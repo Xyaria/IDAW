@@ -14,13 +14,13 @@
             </li>
             <li>
                 <a href="#">
-                    <span class="icon"></span> <!--Emplacement icône-->
+                    <span class="icon"><i class="fa-solid fa-question"></i></span> <!--Emplacement icône-->
                     <span class="nav_item">Un truc</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="icon"></span> <!--Emplacement icône-->
+                    <span class="icon"><i class="fa-solid fa-question"></i></span> <!--Emplacement icône-->
                     <span class="nav_item">Un autre</span>
                 </a>
             </li>

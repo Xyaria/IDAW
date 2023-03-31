@@ -8,3 +8,8 @@
         ?>
     </div>
 </body>
+<footer>
+    <?php
+        require_once("./tpl/tpl_footer.php");
+    ?>
+</footer>
