@@ -28,8 +28,6 @@ connection
 * -> json_encode($text, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
 */
     require_once("generalAPI.php");
-    require_once("../sql/db_pdo.php");
-    $pdo = getPDO();
 
     //TO TEST //TODO error throw
     function main(){        
@@ -73,7 +71,7 @@ connection
     }
 
     //TO TEST
-  /*  function requestNewUser(){
+    function requestNewUser(){
         $requiredValues= getUserTableColumns();
 
         $user = json_decode(file_get_contents("php://input"), true);
@@ -88,9 +86,9 @@ connection
 
         //si arrivé ici, c'est que ok
         //gérer la création de compte
-        $dbUser = executeSQLRequest("INSERT INTO utilisateur (login, mdp, nom, prenom, mail, niveau, sexe, naissance)
-                            VALUES ($user['login'], $user['mdp'], $user['nom'], $user['prenom'], 
-                                    $user['mail'], $user['niveau'], $user['sexe'], $user['naissance'])");
+        //$dbUser = executeSQLRequest("INSERT INTO utilisateur (login, mdp, nom, prenom, mail, niveau, sexe, naissance)
+        //                                VALUES ($user['login'], $user['mdp'], $user['nom'], $user['prenom'], 
+        //                                        $user['mail'], $user['niveau'], $user['sexe'], $user['naissance'])");
 
         if($dbUser == null){
             //Error quelque part
@@ -101,7 +99,7 @@ connection
         jsonMessage(201, "User succesfully created", $json);
         
     }
-*/
+
     //TO TEST //TODO update user and send back ok
     function requestUpdate(){
         $requiredValues= getUserTableColumns();
@@ -117,16 +115,14 @@ connection
             return;
         }
 */
-        $sqlRequest = "UPDATE TABLE utilisateur SET "
-        foreach($user as $field){
-            print_r($field);
-            /*if($field != "id"){
-                $sqlRequest .= $field . " = " $field;
-            }*/
+        $sqlRequest = "UPDATE TABLE utilisateur SET ";
+        foreach($user[0] as $field => $value){
+            $sqlRequest .= $field ." = ". $value;
         }
 
-        $sqlRequest .= "WHERE id = ".$user['id'];
+        $sqlRequest .= "WHERE id = ".$_POST['id'];
 
+        print($sqlRequest);
         $update = executeSQLRequest($sqlRequest);
         print_r($update);
     }
@@ -171,12 +167,12 @@ connection
     function isIdValide(){
         if(!isset($_POST['id'])){
             //erreur id
-            return false
+            return false;
         }
         $id = $_POST['id'];
         if(!is_numeric($id)){   //is_numérique renvoie false si chaine nulle
             //erreur id
-            return false
+            return false;
         }
         if(!doesIdExist($id)){
             //erreur id
