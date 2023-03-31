@@ -20,7 +20,13 @@ connection
 *
 * OPTIONAL : 
 * Secure sport level change (if sport level id selected exist)
+*
+* INFORMATIONS :
+* Add JSON_UNESCAPED_UNICODE as 2nd argument of json_encode to get full support of UTF-8
+* + JSON_PRETTY_PRINT to have a nicely printed json for debugging
+* -> json_encode($text, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
 */
+    require_once("generalAPI.php");
     require_once("../sql/db_pdo.php");
     $pdo = getPDO();
 
@@ -67,7 +73,7 @@ connection
 
     //TO TEST //TODO create user and send back ok
     function requestNewUser(){
-        $requiredValues= getUserTableColumns('login', 'mdp', 'nom', 'prenom', 'mel', 'niveau', 'sexe', 'naissance');
+        $requiredValues= getUserTableColumns();
 
         $user = json_decode(file_get_contents("php://input"), true);
         if(isMissingRequiredValues($user, $requiredValues)){
@@ -85,7 +91,7 @@ connection
 
     //TO TEST //TODO update user and send back ok
     function requestUpdate(){
-        $requiredValues= getUserTableColumns('login', 'mdp', 'nom', 'prenom', 'mel', 'niveau', 'sexe', 'naissance');
+        $requiredValues= getUserTableColumns();
         $user = json_decode(file_get_contents("php://input"), true);
 
         if(!isIdValide()){
@@ -162,15 +168,8 @@ connection
         return true;
     }
 
-    //TO TEST
-    function executeSQLRequest($SQLrequest){
-        $request = $pdo->prepare($SQLrequest);
-        $request->execute();
-        return($request->fetch_all(PDO::FETCH_ASSOC));
-    }
-
     function getUserTableColumns(){
-        return array('login', 'mdp', 'nom', 'prenom', 'mel', 'niveau', 'sexe', 'naissance');
+        return array('login', 'mdp', 'nom', 'prenom', 'mail', 'niveau', 'sexe', 'naissance');
     }
 
     main();

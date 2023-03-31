@@ -1,15 +1,7 @@
 <?php
-
-    /*notes par Corentin
-    * Dans les get d'aliments plus détaillés (get 1 ou get X, pas getALL), 
-    * faudra ajouter les nutriments associés (sinon faut des 
-    * endpoint de l'api spéciale pour mais ça n'a pas de sens)
-    * à voir si on ajoute des colones par défaut (energie, protéine, ...) 
-    * ou si on récupère ça en paramètre json (voire les deux optionss)
-    */
-
-    require_once("db_pdo.php");
-    require_once("config.php");
+    require_once("../sql/db_pdo.php");
+    require_once("../config.php");
+    require_once("generalAPI.php");
 
     header("Content-type: application/json; charset=UTF-8");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
@@ -17,75 +9,88 @@
 
     $pdo = getPDO();
 
-    function jsonMessage($status, $message, $other = NULL){
-        http_response_code($status);
-        $jsonMessage = ["status" => $status, "message" => $message];
-
-        if(isset($other)){
-            foreach($other as $key => $value){
-                $jsonMessage[$key] = $value;
-            }
-        }
-
-        echo json_encode($jsonMessage);
-    }
-
-    function chooseAlimentsFunc(){
+    function chooseAliments(){
         if(isset($_GET['id'])){
             $id = $_GET['id'];
-            getAliment($id);
-            return;
+            $result = getAliment($id);
         }
-        if(isset($_GET['from']) AND isset($_GET['nb'])){
+        else if(isset($_GET['from']) AND isset($_GET['nb'])){
             $id = $_GET['from'];
             $qtt = $_GET['nb'];
-            getXAliments($id, $qtt);
-            return;
+            $result = getXAliments($id, $qtt);
         }
-        if(substr($_SERVER['REQUEST_URI'], -8) !== "aliments"){
+        else if(substr($_SERVER['REQUEST_URI'], -9) !== "aliments/" AND substr($_SERVER['REQUEST_URI'], -8) !== "aliments"){
             jsonMessage(400, "This query is not supported");
             return;
         }
-        getAllAliments();
+        else {
+            $result = getAllAliments();
+        }
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
     }
 
     function getAliment($id){
-        global $pdo;
         if(!is_numeric($id)){
             jsonMessage(400, "ID should be numeric");
             return;
         }
-        $request = $pdo->prepare("SELECT * FROM aliment WHERE `id` = $id");
-        $request->execute();
-        $aliment = $request->fetch(PDO::FETCH_ASSOC);
-        echo json_encode($aliment);
+
+        $db_aliment = executeSQLRequest(
+            "SELECT aliment.LABEL 'Nom', type.LABEL 'Type' 
+            FROM `aliment` 
+                JOIN `type` 
+            WHERE aliment.ID_ALIMENT = $id"
+        );
+
+        $db_alimentDetails = executeSQLRequest(
+            "SELECT nutriment.LABEL 'Nutriment', contient.QUANTITE 'Quantité' 
+            FROM `contient` 
+                JOIN `aliment` ON contient.ID_ALIMENT = aliment.ID_ALIMENT 
+                JOIN `nutriment` ON contient.ID_NUTRIMENT = nutriment.ID_NUTRIMENT 
+            WHERE aliment.ID_ALIMENT = $id"
+        );
+
+        $alimentDetails = [];
+        for ($i=0; $i < count($db_alimentDetails); $i++) { 
+            array_push($alimentDetails, [$db_alimentDetails[$i]["Nutriment"] => $db_alimentDetails[$i]["Quantité"]]);
+        }
+
+        $aliment = [
+            "Nom" => $db_aliment[0]["Nom"], 
+            "Type" =>$db_aliment[0]["Type"], 
+            "Nutriments" => array_merge(...$alimentDetails)
+        ];
+        return $aliment;
     }
 
     function getXAliments($id, $qtt){
-        global $pdo;
         if(!is_numeric($id)){
             jsonMessage(400, "ID should be numeric");
             return;
         }
-        $request = $pdo->prepare("SELECT * FROM aliment WHERE `id_aliment` IN($id, $id+$qtt-1)");
-        $request->execute();
-        $aliment = $request->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode($aliment);
+        if(!is_numeric($qtt)){
+            jsonMessage(400, "Quantity should be numeric");
+            return;
+        }
+        
+        $aliment = [];
+        for($i = $id; $i < $id+$qtt; $i++){
+            array_push($aliment, getAliment($i));
+        }
+
+        return $aliment;
     }
 
     function getAllAliments(){
-        global $pdo;
-        $request = $pdo->prepare("SELECT * FROM aliment");
-        $request->execute();
-        $aliment = $request->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode($aliment);
+        $aliment = executeSQLRequest("SELECT aliment.LABEL 'Aliment' FROM `aliment`");
+        return $aliment;
     }
 
     $reqMethod = $_SERVER['REQUEST_METHOD'];
     
     switch($reqMethod){
         case 'GET':
-            chooseAlimentsFunc();
+            chooseAliments();
             break;
         default:
             jsonMessage(405, "Unauthorized Method");
