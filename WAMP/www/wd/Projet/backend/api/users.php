@@ -3,10 +3,10 @@
 POST /root/users
 avec les infos qu'il faut : ajouter
 
-PUT /root/users?id={id}
+PUT /root/users/{id}
 modifier l'user avce les infos qu'il faut
 
-DELETE /root/users?id={id}
+DELETE /root/users/{id}
 supprimer
 
 POST /root/users/connect
@@ -17,6 +17,7 @@ connection
 * MANDATORY :
 * Check for duplicate printing of errors
 * Return for new user account : change to logged in ? -> give back id
+* Replace put and delete methods because can't use in-url variables
 *
 * OPTIONAL : 
 * Secure sport level change (if sport level id selected exist)
@@ -120,7 +121,8 @@ connection
             $sqlRequest .= $field ." = ". $value;
         }
 
-        $sqlRequest .= "WHERE id = ".$_POST['id'];
+        print_r($_PUT);
+        $sqlRequest .= "WHERE id = ".$_PUT['id'];
 
         print($sqlRequest);
         $update = executeSQLRequest($sqlRequest);
