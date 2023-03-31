@@ -4,6 +4,7 @@
 
     $pdo = getPDO();
 
+    //TESTED
     function jsonMessage($status, $message, $other = NULL){
         http_response_code($status);
         $jsonMessage = ["status" => $status, "message" => $message];
@@ -17,7 +18,7 @@
         echo json_encode($jsonMessage, JSON_UNESCAPED_UNICODE);
     }
 
-    //TO TEST
+    //TESTED
     function executeSQLRequest($SQLrequest){
         global$pdo;
         $request = $pdo->prepare($SQLrequest);

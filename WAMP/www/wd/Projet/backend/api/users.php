@@ -20,6 +20,7 @@ connection
 *
 * OPTIONAL : 
 * Secure sport level change (if sport level id selected exist)
+* Generaly secure values (check variable length for example)
 *
 * INFORMATIONS :
 * Add JSON_UNESCAPED_UNICODE as 2nd argument of json_encode to get full support of UTF-8
@@ -71,8 +72,8 @@ connection
         tryLogin($user['login'], $user['mdp']);
     }
 
-    //TO TEST //TODO create user and send back ok
-    function requestNewUser(){
+    //TO TEST
+  /*  function requestNewUser(){
         $requiredValues= getUserTableColumns();
 
         $user = json_decode(file_get_contents("php://input"), true);
@@ -87,13 +88,27 @@ connection
 
         //si arrivé ici, c'est que ok
         //gérer la création de compte
-    }
+        $dbUser = executeSQLRequest("INSERT INTO utilisateur (login, mdp, nom, prenom, mail, niveau, sexe, naissance)
+                            VALUES ($user['login'], $user['mdp'], $user['nom'], $user['prenom'], 
+                                    $user['mail'], $user['niveau'], $user['sexe'], $user['naissance'])");
 
+        if($dbUser == null){
+            //Error quelque part
+            return;
+        }
+
+        $json = ["location" => $dbUser['id']]; 
+        jsonMessage(201, "User succesfully created", $json);
+        
+    }
+*/
     //TO TEST //TODO update user and send back ok
     function requestUpdate(){
         $requiredValues= getUserTableColumns();
         $user = json_decode(file_get_contents("php://input"), true);
 
+
+        /*
         if(!isIdValide()){
             return;
         }
@@ -101,8 +116,19 @@ connection
             //error no change
             return;
         }
+*/
+        $sqlRequest = "UPDATE TABLE utilisateur SET "
+        foreach($user as $field){
+            print_r($field);
+            /*if($field != "id"){
+                $sqlRequest .= $field . " = " $field;
+            }*/
+        }
 
-        //update request
+        $sqlRequest .= "WHERE id = ".$user['id'];
+
+        $update = executeSQLRequest($sqlRequest);
+        print_r($update);
     }
 
     //TO TEST //TODO remove user and send back ok
