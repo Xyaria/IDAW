@@ -29,4 +29,37 @@
         $request->execute();
         return($request->fetchAll(PDO::FETCH_ASSOC));
     }
+
+    //TESTED
+    function isMissingRequiredValues($arrayToCheck, $requiredValues){
+        if(countNonMissingRequiredValues($arrayToCheck, $requiredValues) != sizeof($requiredValues)){
+            return true;
+        }
+        return false;
+    }
+
+    //TESTED
+    function countNonMissingRequiredValues($arrayToCheck, $requiredValues){
+        $nonMissingValues = 0;
+        foreach($requiredValues as $value){
+            if(isset($arrayToCheck[$value])){
+                $nonMissingValues += 1;
+            }
+        }
+        return $nonMissingValues;
+    }
+
+    //TESTED
+    function doesIdExist($id){
+        return doesUserIdExist($id, "id_user");
+    }
+
+    //TESTED
+    function doesUserIdExist($value, $field){
+        $correspondingUser = executeSQLRequest("SELECT id_user FROM utilisateur WHERE " .$field. " = '" . $value. "'");
+        if($correspondingUser == null){
+            return false;
+        }
+        return true;
+    }
 ?>

@@ -153,23 +153,6 @@ connection
         return;
     }
 
-    function isMissingRequiredValues($arrayToCheck, $requiredValues){
-        if(countNonMissingRequiredValues($arrayToCheck, $requiredValues) != sizeof($requiredValues)){
-            return true;
-        }
-        return false;
-    }
-
-    function countNonMissingRequiredValues($arrayToCheck, $requiredValues){
-        $nonMissingValues = 0;
-        foreach($requiredValues as $value){
-            if(isset($arrayToCheck[$value])){
-                $nonMissingValues += 1;
-            }
-        }
-        return $nonMissingValues;
-    }
-
     function isIdValide($user){
 
         if(!isset($user['id_user'])){
@@ -190,18 +173,6 @@ connection
 
     function doesUserExist($login){
         return doesUserIdExist($login, "login");
-    }
-
-    function doesIdExist($id){
-        return doesUserIdExist($id, "id_user");
-    }
-
-    function doesUserIdExist($value, $field){
-        $correspondingUser = executeSQLRequest("SELECT id_user FROM utilisateur WHERE " .$field. " = '" . $value. "'");
-        if($correspondingUser == null){
-            return false;
-        }
-        return true;
     }
 
     function getUserTableColumns(){
