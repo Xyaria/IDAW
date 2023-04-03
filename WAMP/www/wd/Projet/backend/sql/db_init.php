@@ -5,6 +5,7 @@
     $pdo = getPDO();
 
     function intiDBStruct(){
+        global $pdo;
         try {
             $sql = file_get_contents('../db/db_struct.sql');
             $request = $pdo->exec($sql);
@@ -15,6 +16,7 @@
     }
 
     function initDBData(){
+        global $pdo;
         try {
             $sql = file_get_contents('../db/db_data.sql');
             $request = $pdo->exec($sql);
@@ -25,7 +27,12 @@
     }
 
     function main(){
+        global $pdo;
+        $pdo->exec("SET FOREIGN_KEY_CHECKS=0");
         intiDBStruct();
         initDBData();
+        $pdo->exec("SET FOREIGN_KEY_CHECKS=1");
     }
+
+    main();
 ?>
