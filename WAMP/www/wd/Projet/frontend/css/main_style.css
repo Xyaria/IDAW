@@ -1,26 +1,25 @@
-/* http://paletton.com/#uid=b2E3v2b0kbRt14+E48dwffUpTkImm */
 :root {
-    --base-color: #F2E8CF;
+    --bg-color: #fffbee;                /* Background Color */
     --accent-color: #BC4749;
-    --primary-color-0: #9BCA7F;	/* Main Primary color */
+    --primary-color-0: #9BCA7F;         /* Main Primary color */
     --primary-color-1: #D1E8C4;
     --primary-color-2: #BBDFA6;
     --primary-color-3: #7CB45B; 
     --primary-color-4: #5C9C37;
-    --secondary-dark-color-0: #608094; 	/* Main Secondary color (1) */
-    --secondary-dark-color-1: #A1B2BD;
-    --secondary-dark-color-2: #7C94A4;
-    --secondary-dark-color-3: #466C84;
-    --secondary-dark-color-4: #2D5772;
-    --secondary-light-color-0: #CCDD8B;	/* Main Secondary color (2) */
-    --secondary-light-color-1: #EFF7D1;
-    --secondary-light-color-2: #E7F4B6;
-    --secondary-light-color-3: #B1C563;
-    --secondary-light-color-4: #93AB3C;
+    --secondary-cool-color-0: #608094;  /* Main Secondary cold hue-shift color */
+    --secondary-cool-color-1: #A1B2BD;
+    --secondary-cool-color-2: #7C94A4;
+    --secondary-cool-color-3: #466C84;
+    --secondary-cool-color-4: #2D5772;
+    --secondary-warm-color-0: #CCDD8B;  /* Main Secondary warm hue-shift color */
+    --secondary-warm-color-1: #EFF7D1;
+    --secondary-warm-color-2: #E7F4B6;
+    --secondary-warm-color-3: #B1C563;
+    --secondary-warm-color-4: #93AB3C;
 }
 
 body {
-    background-color: var(--base-color);
+    background-color: var(--bg-color);
 }
 
 .sidebar {
@@ -50,12 +49,12 @@ body {
 }
 
 .profil h3{
-    color: var(--secondary-dark-color-4);
+    color: var(--secondary-cool-color-4);
     margin: 10px 0 5px;
 }
 
 .profil p{
-    color: var(--secondary-dark-color-3);
+    color: var(--secondary-cool-color-3);
     font-size: 14px;
 }
 
@@ -67,27 +66,27 @@ ul li a{
     display: block;
     padding: 13px 30px;
     border-bottom: 1px solid var(--primary-color-3);
-    color: var(--secondary-dark-color-3);
+    color: var(--secondary-cool-color-3);
     font-size: 16px;
     position: relative;
 }
 
 ul li a .icon{
-    color: var(--secondary-dark-color-3);
+    color: var(--secondary-cool-color-3);
     width: 30px;
     display: inline-block;
 }
 
 ul li a:hover,
 ul li a.active{
-    color: var(--secondary-dark-color-4);
-    background: var(--secondary-light-color-0);
-    border-right: 2px solid var(--secondary-light-color-3);
+    color: var(--secondary-cool-color-4);
+    background: var(--secondary-warm-color-0);
+    border-right: 2px solid var(--secondary-warm-color-3);
 }
 
 ul li a:hover .icon,
 ul li a.active .icon{
-    color: var(--secondary-dark-color-4);
+    color: var(--secondary-cool-color-4);
 }
 
 ul li a:hover:before,

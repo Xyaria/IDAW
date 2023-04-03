@@ -1,7 +1,7 @@
 <div class="sidebar">
     <nav>
         <div class="profil">
-            <img src=""/>
+            <img src="./assets/logo.png"/>
             <h3>Nom d'utilisateur</h3>
             <p>Sous-titre si besoin</p>
         </div>
