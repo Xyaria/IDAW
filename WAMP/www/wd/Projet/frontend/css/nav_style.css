@@ -1,0 +1,63 @@
+.profil {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.profil img{
+    display: block;
+    margin: 0 auto;
+
+    width: 100px;
+    height: 100px;
+
+    border: 1px solid var(--primary-color-4);
+    border-radius: 50%;
+}
+
+.profil h3{
+    margin: 10px 0 5px;
+
+    color: var(--secondary-cool-color-4);
+}
+
+.profil p{
+    color: var(--secondary-cool-color-3);
+    font-size: 14px;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li a{
+    display: block;
+    padding: 13px 30px;
+    position: relative;
+
+    border-bottom: 1px solid var(--primary-color-3);
+    color: var(--secondary-cool-color-3);
+    font-size: 16px;
+}
+
+ul li a .icon{
+    display: inline-block;
+    width: 30px;
+    color: var(--secondary-cool-color-3);
+}
+
+ul li a:hover,
+ul li a.active{
+    color: var(--secondary-cool-color-4);
+    background: var(--secondary-warm-color-0);
+    border-right: 2px solid var(--secondary-warm-color-3);
+}
+
+ul li a:hover .icon,
+ul li a.active .icon{
+    color: var(--secondary-cool-color-4);
+}
+
+ul li a:hover:before,
+ul li a.active:before{
+    display: block;
+}

@@ -19,87 +19,50 @@
 }
 
 body {
+    padding: 0;
+    margin: 0;
+
     background-color: var(--bg-color);
+
+    height: 100vh;
+    min-height: 100vh;
+}
+
+.container {
+    display: grid;
+    
+    grid-template:
+    "nav . ." 1fr
+    "nav bloc1 bloc2" 4fr
+    "nav bloc3 bloc3" 6fr
+    "nav . ." 1fr
+    "nav footer footer" 50px
+    / 225px 1fr 2fr;
+    justify-items: stretch;
+
+    height: 100%;
 }
 
 .sidebar {
-    background: var(--primary-color-0);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 225px;
-    height: 100%;
     padding: 20px 0;
-    transition: all 0.5s ease;
-    z-index: 3;
-}
 
-.profil {
-    margin-bottom: 30px;
-    text-align: center;
-}
+    grid-area: nav;
+    background-color: var(--primary-color-0);
 
-.profil img{
-    display: block;
-    width: 100px;
-    height: 100px;
-    border: 1px solid var(--primary-color-4);
-    border-radius: 50%;
-    margin: 0 auto;
-}
-
-.profil h3{
-    color: var(--secondary-cool-color-4);
-    margin: 10px 0 5px;
-}
-
-.profil p{
-    color: var(--secondary-cool-color-3);
-    font-size: 14px;
-}
-
-ul {
-    list-style: none;
-}
-
-ul li a{
-    display: block;
-    padding: 13px 30px;
-    border-bottom: 1px solid var(--primary-color-3);
-    color: var(--secondary-cool-color-3);
-    font-size: 16px;
-    position: relative;
-}
-
-ul li a .icon{
-    color: var(--secondary-cool-color-3);
-    width: 30px;
-    display: inline-block;
-}
-
-ul li a:hover,
-ul li a.active{
-    color: var(--secondary-cool-color-4);
-    background: var(--secondary-warm-color-0);
-    border-right: 2px solid var(--secondary-warm-color-3);
-}
-
-ul li a:hover .icon,
-ul li a.active .icon{
-    color: var(--secondary-cool-color-4);
-}
-
-ul li a:hover:before,
-ul li a.active:before{
-    display: block;
-}
-
-#footer {
-    background-color: var(--primary-color-4);
-    position: absolute;
-    width: 100%;
-    height: 50px;
-    bottom: 0;
+    width: 225px;
     left: 0;
+    top: 0;
+    
     z-index: 2;
+}
+
+.footer {
+    grid-area: footer;
+    background-color: var(--primary-color-4);
+    
+    height: 50px;
+    left: 225px;
+    bottom: 0;
+
+    z-index: 3;
 }

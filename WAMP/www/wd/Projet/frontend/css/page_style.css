@@ -1,0 +1,50 @@
+.wrapper {
+    display: contents;
+}
+
+.bloc {
+    margin: 1em;
+
+    background-color: --bg-color;
+    box-shadow: 5px 5px 10px #ddd;
+    
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+.progress {
+    margin-left: 1em;
+    grid-area: bloc1;
+}
+
+.chart {
+    margin-right: 1em;
+    grid-area: bloc2;
+}
+
+.table {
+    margin: 0 1em;
+    grid-area: bloc3;
+}
+
+#aliment_wrapper { /* Styles for datatable - add "!important" on every property*/
+    margin: 1em !important;
+}
+
+canvas {
+    width: 700px !important;
+    height: 200px !important;
+    margin: 6px auto;
+}
+
+.bar-container {
+    margin: 1em auto;
+    width: 90%;
+    background-color: var(--secondary-warm-color-1);
+}
+  
+#bar {
+    width: 30%;
+    height: 30px;
+    background-color: var(--secondary-warm-color-4);
+}
