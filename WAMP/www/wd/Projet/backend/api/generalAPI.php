@@ -69,7 +69,7 @@
 
     //TO CHECK
     function doesValueExist($value, $column, $table){
-        $correspondingRow = executeSQLRequest("SELECT id_user FROM $table WHERE " .$column. " = '" . $value. "'");
+        $correspondingRow = executeSQLRequest("SELECT ".$column." FROM $table WHERE " .$column. " = '" . $value. "'");
         if($correspondingRow == null){
             return false;
         }
