@@ -49,15 +49,28 @@
         return $nonMissingValues;
     }
 
-    //TESTED
-    function doesIdExist($id){
-        return doesUserIdExist($id, "id_user");
+    //TO CHECK
+    function isIdValide($array, $idField, $column, $table){
+        if(!isset($array[$idField])){
+            jsonMessage(400, "Missing Id");
+            return false;
+        }
+        $id = $array[$idField];
+        if(!is_numeric($id)){   //is_numérique renvoie false si chaine nulle
+            jsonMessage(400, "Id is invalid");
+            return false;
+        }
+        if(!doesValueExist($id, $column, $table)){
+            jsonMessage(400, "Corresponding row does not exist");
+            return false;
+        }
+        return true;
     }
 
-    //TESTED
-    function doesUserIdExist($value, $field){
-        $correspondingUser = executeSQLRequest("SELECT id_user FROM utilisateur WHERE " .$field. " = '" . $value. "'");
-        if($correspondingUser == null){
+    //TO CHECK
+    function doesValueExist($value, $column, $table){
+        $correspondingRow = executeSQLRequest("SELECT id_user FROM $table WHERE " .$column. " = '" . $value. "'");
+        if($correspondingRow == null){
             return false;
         }
         return true;
