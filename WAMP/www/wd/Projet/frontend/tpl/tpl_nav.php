@@ -20,8 +20,8 @@
             </li>
             <li>
                 <a href="#">
-                    <span class="icon"><i class="fa-solid fa-question"></i></span> <!--Emplacement icône-->
-                    <span class="nav_item">Un autre</span>
+                    <span class="icon"><i class="fa-solid fa-gear"></i></span> <!--Emplacement icône-->
+                    <span class="nav_item">Paramètres</span>
                 </a>
             </li>
         </ul>
