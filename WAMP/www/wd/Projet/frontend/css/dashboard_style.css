@@ -1,24 +1,13 @@
-.wrapper {
-    display: contents;
+.wrapper.dashboard {
+    grid-template: 
+    "bloc1 bloc2" 2fr
+    "bloc3 bloc3" 3fr
+    / 1fr 2fr;
 }
 
 .text {
     text-align: center;
     font-size: large;
-    font-family: 'Century Gothic', sans-serif;
-    color: var(--secondary-cool-color-4);
-}
-
-/* --------------------Modules-------------------- */
-
-.bloc {
-    margin: 1em;
-
-    background-color: --bg-color;
-    box-shadow: 5px 5px 10px #ddd;
-    
-    border: 1px solid #aaa;
-    border-radius: 5px;
 }
 
 /* ----- Module Barre de Progrès ----- */

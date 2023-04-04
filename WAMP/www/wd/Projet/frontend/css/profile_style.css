@@ -1,0 +1,105 @@
+.wrapper.profile {
+    grid-template: 
+    "userBloc" 1fr
+    "modifyBloc" 1fr
+    "deleteBloc" 1fr
+    / 1fr;
+    overflow-y: scroll;
+    height: 90vh;
+}
+
+.wrapper.profile > div > * {
+    margin: 1em;
+}
+
+/* ----- Module informations utilisateur ----- */
+
+.user {
+    grid-area: userBloc;
+}
+
+.informations {
+    width: 100%;
+    padding: 1em;
+    border-spacing: 0 1em;
+}
+
+.informations label {
+    font-weight: bold;
+    text-decoration: underline solid var(--secondary-cool-color-4) 1px;
+}
+
+.userInfo {
+    margin-left: 1em;
+}
+
+/* ----- Module modification utilisateur ----- */
+
+.modify {
+    grid-area: modifyBloc;
+}
+
+.form {
+    width: 100%;
+    padding: 1em;
+}
+
+input:not(input[type="submit"]) {
+    margin-top: 0.5em;
+    margin-bottom: 2em;
+    padding: 1px 5px;
+
+    height: 20px;
+
+    background-color: white;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+}
+
+input[type="submit"]{
+    margin: 0 1.5em;
+    padding: 0.5em 1em;
+
+    background-color: var(--primary-color-0);
+    border: 2px solid var(--primary-color-3);
+    border-radius: 10px;
+    font-weight: bold;
+    color: var(--secondary-cool-color-4);
+}
+
+input[type="submit"]:hover{
+    cursor: pointer !important;
+    background-color: var(--primary-color-3);
+    border-color: var(--primary-color-0);
+}
+
+/* ----- Module suppression utilisateur ----- */
+
+.delete {
+    grid-area: deleteBloc;
+}
+
+.delete > div {
+    padding: 0.1em 1em;
+}
+
+.delete > div > p {
+    padding-bottom: 1em;
+}
+
+.red {
+    padding: 1em;
+
+    background-color: red;
+    color: white;
+    font-weight: bold;
+
+    border: 2px solid firebrick;
+    border-radius: 10px;
+}
+
+.red:hover {
+    cursor: pointer !important;
+    background-color: firebrick;
+    border-color: red;
+}

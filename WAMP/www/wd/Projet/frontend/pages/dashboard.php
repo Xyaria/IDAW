@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper dashboard">
     <div class="bloc progress">
         <div class="bar-container">
             <div id="bar"></div>

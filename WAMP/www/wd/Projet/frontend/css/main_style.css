@@ -1,5 +1,6 @@
 :root {
     --bg-color: #fffbee;                /* Background Color */
+    --bloc-color: #fffcf4;
     --accent-color: #BC4749;
     --primary-color-0: #9BCA7F;         /* Main Primary color */
     --primary-color-1: #D1E8C4;
@@ -26,18 +27,26 @@ body {
 
     height: 100vh;
     min-height: 100vh;
+
+    
+    font-family: 'Century Gothic', sans-serif;
+    color: var(--secondary-cool-color-4);
+}
+
+a {
+    text-decoration: 1px none transparent;
+    font-weight: 500;
 }
 
 .container {
     display: grid;
     
     grid-template:
-    "nav . ." 1fr
-    "nav bloc1 bloc2" 4fr
-    "nav bloc3 bloc3" 6fr
-    "nav . ." 1fr
-    "nav footer footer" 50px
-    / 225px 1fr 2fr;
+    "nav ." 1fr
+    "nav wrapper" 10fr
+    "nav ." 1fr
+    "nav footer" 50px
+    / 225px 1fr;
     justify-items: stretch;
 
     height: 100%;
@@ -66,3 +75,38 @@ body {
 
     z-index: 3;
 }
+
+.wrapper {
+    display: grid;
+}
+
+.bloc {
+    margin: 1em;
+
+    background-color: var(--bloc-color);
+    box-shadow: 5px 5px 10px #ddd4c5;
+    
+    border: 1px solid #aaa495;
+    border-radius: 5px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: var(--secondary-warm-color-1);
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--secondary-warm-color-3);
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-warm-color-4);
+  }
