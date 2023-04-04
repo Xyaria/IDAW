@@ -1,5 +1,5 @@
 <?php
-    require_once("generalAPI.php");
+    require_once("../generalAPI.php");
 
     function chooseAliments(){
         if(isset($_GET['id'])){

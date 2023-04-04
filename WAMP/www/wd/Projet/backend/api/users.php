@@ -14,20 +14,18 @@ connection
 */
 
 /*GLOBAL TODO
-* MANDATORY :
-* Return for new user account : change to logged in ? -> give back id
-*
+* 
 * OPTIONAL : 
 * Secure sport level change (if sport level id selected exist)
 * Generaly secure values (check variable length for example)
-* try/catch sur les requettes sql
+* try/catch on sql request
 *
 * INFORMATIONS :
 * Add JSON_UNESCAPED_UNICODE as 2nd argument of json_encode to get full support of UTF-8
 * + JSON_PRETTY_PRINT to have a nicely printed json for debugging
 * -> json_encode($text, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
 */
-    require_once("generalAPI.php");
+    require_once("../generalAPI.php");
 
     function main(){        
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
