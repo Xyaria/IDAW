@@ -62,7 +62,7 @@ connection
             jsonMessage(400, "Missing values");
             return;
         }
-        if(doesUserExist($user['login'])){
+        if(doesValueExist($user['login'], 'login', 'utilisateur')){
             jsonMessage(400, "User with this login already exist");
             return;
         }
@@ -104,7 +104,7 @@ connection
         $user = json_decode(file_get_contents("php://input"), true);
         $user = $user[0];
         
-        if(!isIdValide($user)){()
+        if(!isIdValide($user, 'id_user', 'id_user', 'utilisateur')){()
             return;
         }
         if(countNonMissingRequiredValues($user, $requiredValues) == 0){
@@ -129,7 +129,7 @@ connection
     function requestDeleteUser(){
         $user = json_decode(file_get_contents("php://input"), true);
         $user = $user[0];
-        if(!isIdValide($user)){ //error message already treated
+        if(!isIdValide($user, 'id_user', 'id_user', 'utilisateur')){ //error message already treated
             return;
         }
 
@@ -151,28 +151,6 @@ connection
         $json = ["user" => $user[0]]; 
         jsonMessage(200, "Connected", $json);
         return;
-    }
-
-    function isIdValide($user){
-
-        if(!isset($user['id_user'])){
-            jsonMessage(400, "Missing Id");
-            return false;
-        }
-        $id = $user['id_user'];
-        if(!is_numeric($id)){   //is_numérique renvoie false si chaine nulle
-            jsonMessage(400, "Id is invalid");
-            return false;
-        }
-        if(!doesIdExist($id)){
-            jsonMessage(400, "User does not exist");
-            return false;
-        }
-        return true;
-    }
-
-    function doesUserExist($login){
-        return doesUserIdExist($login, "login");
     }
 
     function getUserTableColumns(){
