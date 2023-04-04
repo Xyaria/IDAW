@@ -14,6 +14,18 @@
             </li>
             <li>
                 <a href="#">
+                    <span class="icon"><i class="fa-solid fa-utensils"></i></span>
+                    <span class="nav_item">Mes Repas</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-carrot"></i></span>
+                    <span class="nav_item">Tous les aliments</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
                     <span class="icon"><i class="fa-solid fa-user"></i></span>
                     <span class="nav_item">Profil</span>
                 </a>

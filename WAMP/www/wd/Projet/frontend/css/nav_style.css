@@ -31,7 +31,7 @@ ul {
 
 ul li a{
     display: block;
-    padding: 13px 30px;
+    padding: 13px 10px;
     position: relative;
 
     border-bottom: 1px solid var(--primary-color-3);

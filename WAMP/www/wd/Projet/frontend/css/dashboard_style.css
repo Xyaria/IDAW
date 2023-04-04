@@ -48,9 +48,15 @@
     grid-area: bloc2;
 }
 
+.chart h2 {
+    margin: 0.5em 0;
+    text-align: center;
+    font-weight: bold;
+}
+
 canvas {
     width: 700px !important;
-    height: 200px !important;
+    height: 150px !important;
     margin: 6px auto;
 }
 
@@ -61,6 +67,12 @@ canvas {
     grid-area: bloc3;
 }
 
-#aliment_wrapper { /* Styles for datatable - add "!important" on every property*/
+.table h2 {
+    margin: 0.5em 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+#conso-summary_wrapper { /* Styles for datatable - add "!important" on every property*/
     margin: 1em !important;
 }

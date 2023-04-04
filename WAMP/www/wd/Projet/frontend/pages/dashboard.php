@@ -10,20 +10,34 @@
         <!--Progression de l'utilisateur dans son ingestion de calorie-->
     </div>
     <div class="bloc chart">
+        <h2>Nutriments du jour</h2>
         <canvas id="global-chart"></canvas> 
-        <!--Mettre un graphique de la consommation en fonction du temps ?
-         Du genre, taux d'un certain nutriment (soit fixe mais peu pertinent, soit variable mais complexe) 
-         ou rappel des calories ?-->
+        <!--Ou changer pour un graphique "barre" avec le ratio nutriment ingérés/nécessaires-->
     </div>
     <div class="bloc table">
-        <table id="aliment" class="hover row-border">
+        <h2>Résumé des derniers repas</h2>
+        <table id="conso-summary" class="hover row-border">
             <thead>
-                <th></th>
+                <th>Test</th>
                 <!--Noms de colonnes-->
             </thead>
             <tbody>
                 <tr>
-                    <td></td>
+                    <td>AAA</td>
+                </tr><tr>
+                    <td>AAA</td>
+                </tr><tr>
+                    <td>AAA</td>
+                </tr><tr>
+                    <td>AAA</td>
+                </tr><tr>
+                    <td>AAA</td>
+                </tr><tr>
+                    <td>AAA</td>
+                </tr><tr>
+                    <td>AAA</td>
+                </tr><tr>
+                    <td>AAA</td>
                 </tr>
                 <!--Données-->
             </tbody>

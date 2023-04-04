@@ -2,13 +2,16 @@ $(document).ready(function () {
     const warmColor4 = $(":root").css("--secondary-warm-color-4");
 
     // Paramétrage de DataTable pour la liste des consommations
-    $('#aliment').DataTable({
+    $('#conso-summary').DataTable({
         pageLength: 6,
-        lengthChange: false
+        lengthChange: false,
+        bInfo: false,
+        paging: false,
+        bFilter: false
     });
 
     // Paramétrage de Chart.js pour l'affichage d'un graphique temporel
-    const data = {
+    const dataDays = {
         labels: [
             'Lundi',
             'Mardi',
@@ -24,21 +27,53 @@ $(document).ready(function () {
             backgroundColor: warmColor4,
             hoverOffset: 4
         }]
-      };
+    };
+
+    const dataNutriment = {
+        labels: [
+            'Protéines',
+            'Lipides',
+            'Glucides',
+            'Vitamines',
+            'Minéraux',
+            'Fibres',
+            'Eau'
+        ],
+        datasets: [{
+            label: "%",
+            data:[100, 92, 57, 100, 83, 68, 28],
+            backgroundColor: warmColor4,
+            hoverOffset: 4
+        }]
+    }
 
     const chart = $("#global-chart");
-    new Chart(chart, {
+    /* new Chart(chart, { // chart "calories des 7 derniers jours"
         type: 'line',
-        data: data,
+        data: dataDays,
         options :{
             responsive: true,
-            aspectRatio: 7 / 2,
+            aspectRatio: 14 / 3,
+            maintainAspectRatio: true,
+            plugins: {
+                legend : false
+            }
+        }
+    }); */
+    new Chart(chart, { // chart "nutriments de la journée"
+        type: 'bar',
+        data: dataNutriment,
+        options :{
+            responsive: true,
+            aspectRatio: 14 / 3,
             maintainAspectRatio: true,
             plugins: {
                 legend : false
             }
         }
     });
+
+
 
     // Paramétrage de la barre de progrès
         // - Récupérer l'ingestion de calorie de l'utilisateur
