@@ -3,6 +3,10 @@
         <div class="bar-container">
             <div id="bar"></div>
         </div>
+        <div class="text">
+            <p id="calories-count">1950/2500 kcal</p>
+            <p id="calories-message">Continue comme ça !</p>
+        </div>
         <!--Progression de l'utilisateur dans son ingestion de calorie-->
     </div>
     <div class="bloc chart">
