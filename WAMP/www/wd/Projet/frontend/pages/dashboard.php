@@ -1,10 +1,10 @@
 <?php 
 function dashboard($isHidden){
     if($isHidden){
-        echo '<div class="wrapper dashboard hidden">'
+        echo '<div class="wrapper dashboard hidden">';
     }
     else{
-        echo '<div class="wrapper dashboard">'
+        echo '<div class="wrapper dashboard">';
     }
     echo   
         '<div class="bloc progress">
@@ -19,8 +19,7 @@ function dashboard($isHidden){
         </div>
         <div class="bloc chart">
             <h2>Nutriments du jour</h2>
-            <canvas id="global-chart"></canvas> 
-            <!--Ou changer pour un graphique "barre" avec le ratio nutriment ingérés/nécessaires-->
+            <canvas id="global-chart"></canvas>
         </div>
         <div class="bloc table">
             <h2>Résumé des derniers repas</h2>

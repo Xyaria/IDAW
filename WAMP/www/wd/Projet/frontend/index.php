@@ -6,7 +6,7 @@
 <body>
     <div class="container">
         <?php
-            require_once("./tpl/tpl_navUnconnected.php");
+            require_once("./tpl/tpl_nav_guest.php");
             require_once("./tpl/tpl_nav.php");
 
             // ajouter les pages dynamiquement en fonction du menu cliqué
@@ -30,7 +30,7 @@
     function displayPages(){
         $isConnected = isset($_SESSION['id_user']);
         tpl_nav($isConnected);
-        tpl_navUnconnected($isConnected);
+        tpl_nav_guest($isConnected);
         dashboard($isConnected);
         connection($isConnected);
     }

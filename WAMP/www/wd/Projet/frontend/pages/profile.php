@@ -1,6 +1,11 @@
 <?php
+    $userSurname = '';
     $userName = '';
     $userMail = '';
+    $userLogin = '';
+    $userBirthday = '';
+    $userLevel = '';
+    $userSex= '';
     echo '<div class="wrapper profile hidden">
         <div class="bloc user">
             <h1>Vos informations</h1>
@@ -8,27 +13,42 @@
             <table class="informations">
                 <tr>
                     <td>
-                        <label>Nom d\'utilisateur</label>
+                        <label>Nom</label>
                         <br/>
-                        <span class="userInfo" id="userName">JeanBili</span>
+                        <span class="userInfo" id="userSurname">'.$userSurname.'</span>
                         <br/>
                     </td>
                     <td>
-                        <label>Nombre de jours suivit</label>
+                        <label>Adresse Mail</label>
                         <br/>
-                        <span class="userInfo" id="userTrackedDays">8</span>
+                        <span class="userInfo" id="userMail">'.$userMail.'</span>
+                    </td>
+                    <td>
+                        <label>Anniversaire</label>
+                        <br/>
+                        <span class="userInfo" id="userBirthday">'.$userBirthday.'</span>
+                    </td>
+                    <td>
+                        <label>Niveau sportif</label>
+                        <br/>
+                        <span class="userInfo" id="userLevel">'.$userLevel.'</span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label>Adresse e-mail</label>
+                        <label>Prénom</label>
                         <br/>
-                        <span class="userInfo" id="userMail">jean@bili.com</span>
+                        <span class="userInfo" id="userName">'.$userName.'</span>
                     </td>
                     <td>
-                        <label>Nombre de repas entrés</label>
+                        <label>Pseudo</label>
                         <br/>
-                        <span class="userInfo" id="userTrackedMeals">24</span>
+                        <span class="userInfo" id="userLogin">'.$userLogin.'</span>
+                    </td>
+                    <td>
+                        <label>Sexe</label>
+                        <br/>
+                        <span class="userInfo" id="userSex">'.$userSex.'</span>
                     </td>
                 </tr>
                 
@@ -41,7 +61,22 @@
                 <table class="form">
                     <tr>
                         <td>
-                            <label>Nom d\'utilisateur</label>
+                            <label>Nom</label>
+                            <br/>
+                            <input/>
+                        </td>
+                        <td>
+                            <label>Mail</label>
+                            <br/>
+                            <input/>
+                        </td>
+                        <td>
+                            <label>Anniversaire</label>
+                            <br/>
+                            <input/>
+                        </td>
+                        <td>
+                            <label>Niveau sportif</label>
                             <br/>
                             <input/>
                         </td>
@@ -53,7 +88,17 @@
                     </tr>
                     <tr>
                         <td>
-                            <label>E-mail</label>
+                            <label>Prénom</label>
+                            <br/>
+                            <input/>
+                        </td>
+                        <td>
+                            <label>Pseudo</label>
+                            <br/>
+                            <input/>
+                        </td>
+                        <td>
+                            <label>Sexe</label>
                             <br/>
                             <input/>
                         </td>

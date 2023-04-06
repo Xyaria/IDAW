@@ -12,7 +12,11 @@ $(document).ready(function () {
         nav.forEach(nav_item => {
             nav_item.classList.remove("active");
         });
+        pages.forEach(page => {
+            page.classList.add("hidden");
+        })
         $(pageLink).addClass("active");
+        // ajouter affichage de la page de destination
     }
 
     // Paramétrage de DataTable pour la liste des consommations
