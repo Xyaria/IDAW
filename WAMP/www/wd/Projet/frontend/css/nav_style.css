@@ -61,3 +61,7 @@ ul li a:hover:before,
 ul li a.active:before{
     display: block;
 }
+
+ul li a:hover {
+    cursor: pointer;
+}

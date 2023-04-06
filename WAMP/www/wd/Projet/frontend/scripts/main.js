@@ -1,6 +1,20 @@
 $(document).ready(function () {
     const warmColor4 = $(":root").css("--secondary-warm-color-4");
 
+    const nav_dashboard = $(".nav#nav_dashboard");
+    const nav_repas = $(".nav#nav_repas");
+    const nav_aliment = $(".nav#nav_aliment");
+    const nav_profile = $(".nav#nav_profile");
+    const nav = document.querySelectorAll(".nav");
+    const pages = document.querySelectorAll(".wrapper");
+
+    function goToPage(pageLink){
+        nav.forEach(nav_item => {
+            nav_item.classList.remove("active");
+        });
+        $(pageLink).addClass("active");
+    }
+
     // Paramétrage de DataTable pour la liste des consommations
     $('#conso-summary').DataTable({
         pageLength: 6,

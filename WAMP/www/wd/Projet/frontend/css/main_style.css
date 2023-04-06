@@ -69,6 +69,10 @@ a {
     border-radius: 5px;
 }
 
+.hidden {
+    display: none !important;
+}
+
 button {
     margin: 0 1.5em;
     padding: 0.5em 1em;
@@ -89,20 +93,20 @@ button:hover {
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
-  }
+}
   
-  /* Track */
-  ::-webkit-scrollbar-track {
+/* Track */
+::-webkit-scrollbar-track {
     background: var(--secondary-warm-color-1);
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
     background: var(--secondary-warm-color-3);
     border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
     background: var(--secondary-warm-color-4);
-  }
+}

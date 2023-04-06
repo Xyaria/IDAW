@@ -8,8 +8,8 @@
 
             // ajouter les pages dynamiquement en fonction du menu cliqué
             //require_once("./pages/dashboard.php");
-            //require_once("./pages/profile.php");
-            require_once("./pages/mes_repas.php");
+            require_once("./pages/profile.php");
+            //require_once("./pages/mes_repas.php");
             //require_once("./pages/aliments.php");
             require_once("./tpl/tpl_footer.php");
         ?>
@@ -25,4 +25,5 @@
 - Réordonner main.js dans un script dashboard.js
 - encapsuler les scripts dans des fonctions à appeler dans main.js
 - ajouter la navigation (show/hide dans les fonctions principales des pages)
+*/
 ?>

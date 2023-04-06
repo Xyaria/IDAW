@@ -7,36 +7,35 @@
         </div>
         <ul>
             <li>
-                <a href="#">
+                <a class="nav active" id="nav_dashboard" onclick="goToPage(this)">
                     <span class="icon"><i class="fa-solid fa-chart-line"></i></span>
                     <span class="nav_item">Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a class="nav" id="nav_repas" onclick="goToPage(this)">
                     <span class="icon"><i class="fa-solid fa-utensils"></i></span>
                     <span class="nav_item">Mes Repas</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a class="nav" id="nav_aliment" onclick="goToPage(this)">
                     <span class="icon"><i class="fa-solid fa-carrot"></i></span>
                     <span class="nav_item">Tous les aliments</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a class="nav" id="nav_profile" onclick="goToPage(this)">
                     <span class="icon"><i class="fa-solid fa-user"></i></span>
                     <span class="nav_item">Profil</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <!-- <li>
+                <a>
                     <span class="icon"><i class="fa-solid fa-gear"></i></span>
                     <span class="nav_item">Paramètres</span>
                 </a>
-            </li>
+            </li> -->
         </ul>
     </nav>
-
 </div>
