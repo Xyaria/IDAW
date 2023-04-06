@@ -121,18 +121,24 @@
             requestGetFromToConsumption($_GET['from'], $_GET['to'],  $_GET['id']);
             return;
         }
-        jsonMessage(400, "Missing parameters");
+        else{
+            requestGetLastXConsumption('all', $_GET['id']);;
+        }
     }   
     
     //TESTED
     function requestGetLastXConsumption($number, $id_user){
-        if(!is_numeric($number)){
+        if(!is_numeric($number) && $number != 'all'){
             jsonMessage(400, "Parameter is not a number");
             return;
         }
 
-        $lastConsumptions = executeSQLRequest("SELECT id_aliment, quantite, date FROM consomme WHERE id_user = '" .$id_user. "'
-                            ORDER BY date desc LIMIT " .$number);
+        $request = "SELECT id_aliment, quantite, date FROM consomme WHERE id_user = '" .$id_user. "'
+        ORDER BY date desc";
+        if($number != 'all'){
+            $request .= " LIMIT " .$number;
+        }
+        $lastConsumptions = executeSQLRequest($request);
 
         jsonMessage(201, "Success", $lastConsumptions);
     }  
