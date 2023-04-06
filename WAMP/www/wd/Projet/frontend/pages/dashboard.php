@@ -18,28 +18,11 @@
         <h2>Résumé des derniers repas</h2>
         <table id="conso-summary" class="hover row-border">
             <thead>
-                <th>Test</th>
-                <!--Noms de colonnes-->
+                <th>Aliment</th>
+                <th>Quantité</th>
+                <th>Date</th>
             </thead>
             <tbody>
-                <tr>
-                    <td>AAA</td>
-                </tr><tr>
-                    <td>AAA</td>
-                </tr><tr>
-                    <td>AAA</td>
-                </tr><tr>
-                    <td>AAA</td>
-                </tr><tr>
-                    <td>AAA</td>
-                </tr><tr>
-                    <td>AAA</td>
-                </tr><tr>
-                    <td>AAA</td>
-                </tr><tr>
-                    <td>AAA</td>
-                </tr>
-                <!--Données-->
             </tbody>
         </table>
     </div>

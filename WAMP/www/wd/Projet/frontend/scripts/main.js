@@ -34,9 +34,9 @@ $(document).ready(function () {
             'Protéines',
             'Lipides',
             'Glucides',
-            'Vitamines',
+            /* 'Vitamines',
             'Minéraux',
-            'Fibres',
+            'Fibres', */
             'Eau'
         ],
         datasets: [{

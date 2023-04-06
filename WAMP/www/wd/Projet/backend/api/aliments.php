@@ -5,15 +5,11 @@
         if(isset($_GET['id'])){
             $id = $_GET['id'];
             $result = getAliment($id);
-        }      
-        else if(substr($_SERVER['REQUEST_URI'], -9) !== "aliments/" AND substr($_SERVER['REQUEST_URI'], -8) !== "aliments"){
-            jsonMessage(400, "This query is not supported");
-            return;
         }
         else {
             $result = getAllAliments();
         }
-        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        echo json_encode($result, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
     }
 
     function getAliment($id){
@@ -51,8 +47,15 @@
     }
 
     function getAllAliments(){
-        $aliment = executeSQLRequest("SELECT aliment.LABEL 'Aliment' FROM `aliment`");
-        return $aliment;
+        $aliments = [];
+        $id = 1;
+        $max_id = executeSQLRequest("SELECT MAX(ID_ALIMENT) 'ID' FROM `aliment`");
+        while($id <= $max_id[0]['ID']){
+            array_push($aliments, getAliment($id));
+            $id ++;
+        }
+        // $aliments_list = executeSQLRequest("SELECT aliment.LABEL 'Aliment' FROM `aliment`");
+        return $aliments;
     }
 
     function addAliment(){
