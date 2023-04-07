@@ -15,13 +15,13 @@
             </div>
             <ul>
                 <li>
-                    <a class="nav active" id="nav_signin" onclick="goToPage(this)">
+                    <a class="nav connexion active" onclick="goToPage(this)">
                         <span class="icon"><i class="fa-solid fa-right-to-bracket"></i></span>
                         <span class="nav_item">Connexion</span>
                     </a>
                 </li>
                 <li>
-                    <a class="nav" id="nav_signup" onclick="goToPage(this)">
+                    <a class="nav inscription" onclick="goToPage(this)">
                         <span class="icon"><i class="fa-solid fa-user-plus"></i></span>
                         <span class="nav_item">Inscription</span>
                     </a>

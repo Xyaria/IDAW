@@ -9,13 +9,13 @@ function connexion($isConnected){
     echo '<div class="bloc connect">
             <h3>Connectez-vous pour accéder à votre espace</h3>
             <form onsubmit="event.preventDefault()">
-                <label>Login</label>
+                <label for="userLogin">Login</label>
                 <br>
-                <input/>
+                <input name="userLogin"/>
                 <br>
-                <label>Mot de passe</label>
+                <label for="userPassword">Mot de passe</label>
                 <br>
-                <input type="password"/>
+                <input name="userPassword" type="password"/>
                 <br>
                 <input type="submit" value="Connexion"/>
             </form>

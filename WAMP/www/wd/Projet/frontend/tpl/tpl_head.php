@@ -20,7 +20,7 @@
     <link href="./css/main_style.css" type="text/css" rel="stylesheet">
     <link href="./css/dashboard_style.css" type="text/css" rel="stylesheet">
     <link href="./css/profile_style.css" type="text/css" rel="stylesheet">
-    <link href="./css/connexion_style.css" type="text/css" rel="stylesheet">
+    <link href="./css/connexion_inscription_style.css" type="text/css" rel="stylesheet">
     <link href="./css/nav_style.css" type="text/css" rel="stylesheet">
 
     <link href="./assets/favicon.ico" rel="favicon">

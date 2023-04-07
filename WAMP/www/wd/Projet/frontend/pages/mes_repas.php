@@ -1,4 +1,4 @@
-<div class="wrapper mes-repas hidden">
+<div class="wrapper mes_repas hidden">
     <div class="bloc liste-repas">
     <button>Ajouter un repas</button>
     <table id="repas" class="hover row-border">

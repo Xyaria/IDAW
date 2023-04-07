@@ -159,17 +159,17 @@
     }
 
     function requestGetDailyConsumption($id){
-        date_timezone_set("Europe/Paris");
-        $today = date("A-M-J");
-        $consumptions = executeSQLRequest("SELECT nutriment.label, SUM(contient.quantite * consomme.quantite)
+        date_default_timezone_set("Europe/Paris");
+        $today = date("Y-m-d");
+        $consumptions = executeSQLRequest("SELECT nutriment.label, SUM(contient.quantite * consomme.quantite/100)
                                             FROM consomme, aliment, contient, nutriment
                                             WHERE consomme.id_user = ".$id."
                                             AND consomme.id_aliment = aliment.id_aliment
                                             AND aliment.id_aliment = contient.id_aliment
                                             AND contient.id_nutriment = nutriment.id_nutriment
-                                            WHERE consomme.date = ".$today."
-                                            ORDER BY consomme.date
-                                            GROUP BY nutriment.label");
+                                            AND consomme.date = '".$today."'
+                                            GROUP BY nutriment.label
+                                            ORDER BY nutriment.label");
         jsonMessage(201, "Success", $consumptions);
     }
 

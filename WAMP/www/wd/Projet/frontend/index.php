@@ -12,6 +12,7 @@
             // ajouter les pages dynamiquement en fonction du menu cliqué
             require_once("./pages/dashboard.php");
             require_once("./pages/connexion.php");
+            require_once("./pages/inscription.php");
 
             require_once("./pages/profile.php");
             displayPages();
@@ -26,27 +27,24 @@
     </div>
 </body>
 <script>
-const nav = document.querySelectorAll(".nav");
+    const nav = document.querySelectorAll(".nav");
     const pages = document.querySelectorAll(".wrapper");
 
 function goToPage(pageLink){
-    nav.forEach(nav_item => {
-        nav_item.classList.remove("active");
-        console.log("Removed active");
-    });
-    pages.forEach(page => {
-        page.classList.add("hidden");
-        console.log("Hidden all");
-    })
+    $(".active").removeClass("active");
+    $(".wrapper:not(hidden)").addClass("hidden");
+
     $(pageLink).addClass("active");
-    console.log("Added active to " + pageLink.classList);
-    // ajouter affichage de la page de destination
+    pageToShow = pageLink.classList[1];
+    $(".wrapper."+pageToShow).removeClass("hidden");
+
+    updatePage(pageToShow);
 }
 </script>
 
 <?php
     function displayPages(){
-        $isConnected = false;//isset($_SESSION['id_user']);
+        $isConnected = isset($_SESSION['id_user']);
         tpl_nav($isConnected);
         tpl_nav_guest($isConnected);
         dashboard($isConnected);

@@ -1,4 +1,4 @@
-.wrapper.connexion {
+.wrapper.connexion, .wrapper.inscription {
     grid-template:
     ". . ." 1fr
     ". connect ." 2fr
@@ -8,21 +8,21 @@
     width: 80vw;
 }
 
-.bloc.connect {
+.bloc.connect, .bloc.signin {
     padding: 1em;
     grid-area: connect;
     text-align: center;
 }
 
-.bloc.connect *:not(input) {
+.bloc.connect *:not(input), .bloc.signin *:not(input) {
     padding: 1em;
 }
 
-.bloc.connect input {
+.bloc.connect input, .bloc.signin input {
     padding: 0.2em;
 }
 
-.bloc.connect input[type='submit'] {
+.bloc.connect input[type='submit'], .bloc.signin input[type='submit'] {
     padding: 0.5em 0.7em;
     margin-top: 1em;
 }

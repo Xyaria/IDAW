@@ -61,51 +61,52 @@
                 <table class="form">
                     <tr>
                         <td>
-                            <label>Nom</label>
+                            <label for="userSurname">Nom</label>
                             <br/>
-                            <input/>
+                            <input name="userSurname"/>
                         </td>
                         <td>
-                            <label>Mail</label>
+                            <label for="userMail">Mail</label>
                             <br/>
-                            <input/>
+                            <input name="userMail"/>
                         </td>
                         <td>
-                            <label>Anniversaire</label>
+                            <label for="userBirthday">Anniversaire</label>
                             <br/>
-                            <input/>
+                            <input name="userBirthday"/>
                         </td>
                         <td>
-                            <label>Niveau sportif</label>
+                            <label for="userLevel">Niveau sportif</label>
                             <br/>
-                            <input/>
+                            <input name="userLevel"/>
                         </td>
                         <td>
-                            <label>Ancien mot de passe</label>
+                            <label for="userPassword_old">Ancien mot de passe</label>
                             <br/>
-                            <input/>
+                            <input name="userPassword_old"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label>Prénom</label>
+                            <label for="userName">Prénom</label>
                             <br/>
-                            <input/>
+                            <input name="userName"/>
                         </td>
                         <td>
-                            <label>Pseudo</label>
+                            <label for="userLogin">Pseudo</label>
                             <br/>
-                            <input/>
+                            <input name="userLogin"/>
                         </td>
                         <td>
-                            <label>Sexe</label>
+                            <label for="userSex">Sexe</label>
                             <br/>
-                            <input/>
+                            <input name="userSex"/>
                         </td>
+                        <td></td>
                         <td>
-                            <label>Nouveau mot de passe</label>
+                            <label for="userPassword">Nouveau mot de passe</label>
                             <br/>
-                            <input/>
+                            <input name="userPassword"/>
                         </td>
                     </tr>
                 </table>
