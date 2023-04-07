@@ -18,6 +18,7 @@
             displayPages();
 
             require_once("./pages/mes_repas.php");
+            require_once("./pages/ajout_repas.php");
             require_once("./pages/aliments.php");
 
             require_once("./tpl/tpl_footer.php");

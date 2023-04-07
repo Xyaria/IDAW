@@ -1,7 +1,9 @@
 <div class="wrapper mes_repas hidden">
+    <div class="bloc add-btn">
+        <button id="add-conso" onclick="addConso()">Ajouter un repas consommé</button>
+    </div>
     <div class="bloc liste-repas">
-    <button>Ajouter un repas</button>
-    <table id="repas" class="hover row-border">
+        <table id="repas" class="hover row-border">
             <thead>
                 <th>Aliment</th>
                 <th>Quantité</th>
@@ -15,3 +17,12 @@
         </table>
     </div>
 </div>
+<script>
+function addConso(){
+    $(".layer").removeClass("hidden");
+}
+
+function validateConso(){
+    $(".layer").addClass("hidden");
+}
+</script>
