@@ -121,6 +121,10 @@
             requestGetFromToConsumption($_GET['from'], $_GET['to'],  $_GET['id']);
             return;
         }
+        if(isset($_SERVER['PATH_INFO']) && $_SERVER['PATH_INFO'] == '/daily'){
+            requestGetDailyConsumption($_GET['id']);
+            return;
+        }
         else{
             requestGetLastXConsumption('all', $_GET['id']);;
         }
@@ -151,6 +155,21 @@
         }
         $consumptions = executeSQLRequest("SELECT id_aliment, quantite, date FROM consomme WHERE id_user = '" .$id_user. "'
                             ORDER BY date desc LIMIT " . $from-1 . ", " .$to-$from+1);
+        jsonMessage(201, "Success", $consumptions);
+    }
+
+    function requestGetDailyConsumption($id){
+        date_timezone_set("Europe/Paris");
+        $today = date("A-M-J");
+        $consumptions = executeSQLRequest("SELECT nutriment.label, SUM(contient.quantite * consomme.quantite)
+                                            FROM consomme, aliment, contient, nutriment
+                                            WHERE consomme.id_user = ".$id."
+                                            AND consomme.id_aliment = aliment.id_aliment
+                                            AND aliment.id_aliment = contient.id_aliment
+                                            AND contient.id_nutriment = nutriment.id_nutriment
+                                            WHERE consomme.date = ".$today."
+                                            ORDER BY consomme.date
+                                            GROUP BY nutriment.label");
         jsonMessage(201, "Success", $consumptions);
     }
 
