@@ -10,17 +10,18 @@
         return tabDailyValues[3*x+y]; 
     }
 
-    function getTodaysValues(){
+    function getTodaysValues(id){
+        var nutriment_liste = [];
         $.ajax({
-            url: API_ROOT . "/aliments/",
+            url: API_ROOT + "/users/consommation/daily?id=" + id,
             method: 'GET',
             dataType: 'json'
         })
-        .done((aliments) => {
-            var aliment_liste = [];
-            aliments.forEach(aliment => {
-                aliment_liste.push(aliment['Nom']);
+        .done((nutriment) => {
+            nutriment.forEach(nutriment => {
+                nutriment_liste.push(nutriment);
             });
         });
+
     }
 </script>
