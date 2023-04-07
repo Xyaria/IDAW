@@ -6,6 +6,17 @@
     $userBirthday = '';
     $userLevel = '';
     $userSex= '';
+
+    if(isset($_SESSION['id'])){
+        $userSurname = $_SESSION['userSurname'];
+        $userName = $_SESSION['userName'];
+        $userMail = $_SESSION['userMail'];
+        $userLogin = $_SESSION['userLogin'];
+        $userBirthday = $_SESSION['userBirthday'];
+        $userLevel = $_SESSION['userLevel'];
+        $userSex= $_SESSION['userSex'];
+    }
+
     echo '<div class="wrapper profile hidden">
         <div class="bloc user">
             <h1>Vos informations</h1>
