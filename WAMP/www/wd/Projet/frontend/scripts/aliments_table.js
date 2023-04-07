@@ -1,8 +1,9 @@
 $(document).ready(function () {
     $("#aliment").DataTable({
-        pageLength: 9,
+        pageLength: 7,
         lengthChange: false,
         bInfo: false,
+        autowidth: true,
         ajax: {
             url: "../backend/api/aliments/",
             method: 'GET',
@@ -11,30 +12,37 @@ $(document).ready(function () {
         columns: [
             {
                 data: 'Nom',
+                width: "30%",
                 defaultContent: '0'
             },
             {
                 data: 'Type',
+                width: "20%",
                 defaultContent: '0'
             },
             {
                 data: 'Nutriments.Energie',
+                width: "10%",
                 defaultContent: '0'
             },
             {
                 data: 'Nutriments.Eau',
+                width: "10%",
                 defaultContent: '0'
             },
             {
                 data: 'Nutriments.Protéines',
+                width: "10%",
                 defaultContent: '0'
             },
             {
                 data: 'Nutriments.Glucides',
+                width: "10%",
                 defaultContent: '0'
             },
             {
                 data: 'Nutriments.Lipides',
+                width: "10%",
                 defaultContent: '0'
             },
         ]

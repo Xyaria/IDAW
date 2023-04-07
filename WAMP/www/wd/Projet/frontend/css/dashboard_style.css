@@ -5,19 +5,19 @@
     / 1fr 2fr;
 }
 
-.text {
+.wrapper.dashboard .text {
     text-align: center;
     font-size: large;
 }
 
 /* ----- Module Barre de Progrès ----- */
 
-.progress {
+.wrapper.dashboard .progress {
     margin-left: 1em;
     grid-area: bloc1;
 }
 
-.bar-container {
+.wrapper.dashboard .bar-container {
     margin: 1em auto;
     width: 90%;
 
@@ -25,7 +25,7 @@
     border-radius: 20px;
 }
   
-#bar {
+.wrapper.dashboard #bar {
     width: 30%;
     height: 30px;
 
@@ -34,7 +34,7 @@
 }
 
 
-#calories-count {
+.wrapper.dashboard #calories-count {
     margin: 0;
     margin-top: 30px;
     font-size: 39px;
@@ -43,18 +43,18 @@
 
 /* ----- Module Graphique ----- */
 
-.chart {
+.wrapper.dashboard .chart {
     margin-right: 1em;
     grid-area: bloc2;
 }
 
-.chart h2 {
+.wrapper.dashboard .chart h2 {
     margin: 0.5em 0;
     text-align: center;
     font-weight: bold;
 }
 
-canvas {
+.wrapper.dashboard canvas {
     width: 700px !important;
     height: 150px !important;
     margin: 6px auto;
@@ -62,12 +62,12 @@ canvas {
 
 /* ----- Module Tableau ----- */
 
-.table {
+.wrapper.dashboard .table {
     margin: 0 1em;
     grid-area: bloc3;
 }
 
-.table h2 {
+.wrapper.dashboard .table h2 {
     margin: 0.5em 0;
     text-align: center;
     font-weight: bold;

@@ -44,7 +44,7 @@ function goToPage(pageLink){
 
 <?php
     function displayPages(){
-        $isConnected = isset($_SESSION['id_user']);
+        $isConnected = true;//isset($_SESSION['id_user']);
         tpl_nav($isConnected);
         tpl_nav_guest($isConnected);
         dashboard($isConnected);

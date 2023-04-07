@@ -21,7 +21,7 @@
         $db_aliment = executeSQLRequest(
             "SELECT aliment.LABEL 'Nom', type.LABEL 'Type' 
             FROM `aliment` 
-                JOIN `type` 
+                JOIN `type` ON aliment.TYPE = type.ID_TYPE
             WHERE aliment.ID_ALIMENT = $id"
         );
 
