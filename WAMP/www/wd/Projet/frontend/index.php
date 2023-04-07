@@ -8,6 +8,7 @@
         <?php
             require_once("./tpl/tpl_nav_guest.php");
             require_once("./tpl/tpl_nav.php");
+            require_once("./tpl/tpl_footer.php");
 
             // ajouter les pages dynamiquement en fonction du menu cliqué
             require_once("./pages/dashboard.php");
@@ -17,31 +18,13 @@
             require_once("./pages/profile.php");
             displayPages();
 
-            require_once("./pages/mes_repas.php");
-            require_once("./pages/ajout_repas.php");
             require_once("./pages/aliments.php");
-
-            require_once("./tpl/tpl_footer.php");
-
-
+            require_once("./pages/ajout_repas.php");
+            require_once("./pages/mes_repas.php");
+            $test = NULL;
         ?>
     </div>
 </body>
-<script>
-    const nav = document.querySelectorAll(".nav");
-    const pages = document.querySelectorAll(".wrapper");
-
-function goToPage(pageLink){
-    $(".active").removeClass("active");
-    $(".wrapper:not(hidden)").addClass("hidden");
-
-    $(pageLink).addClass("active");
-    pageToShow = pageLink.classList[1];
-    $(".wrapper."+pageToShow).removeClass("hidden");
-
-    updatePage(pageToShow);
-}
-</script>
 
 <?php
     function displayPages(){

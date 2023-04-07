@@ -77,19 +77,19 @@
                             <input name="userSurname"/>
                         </td>
                         <td>
+                            <label for="userName">Prénom</label>
+                            <br/>
+                            <input name="userName"/>
+                        </td>
+                        <td>
                             <label for="userMail">Mail</label>
                             <br/>
                             <input name="userMail"/>
                         </td>
                         <td>
-                            <label for="userBirthday">Anniversaire</label>
+                            <label for="userLogin">Pseudo</label>
                             <br/>
-                            <input name="userBirthday"/>
-                        </td>
-                        <td>
-                            <label for="userLevel">Niveau sportif</label>
-                            <br/>
-                            <input name="userLevel"/>
+                            <input name="userLogin"/>
                         </td>
                         <td>
                             <label for="userPassword_old">Ancien mot de passe</label>
@@ -99,19 +99,28 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="userName">Prénom</label>
+                            <label for="userBirthday">Anniversaire</label>
                             <br/>
-                            <input name="userName"/>
+                            <input type="date" name="userBirthday"/>
                         </td>
                         <td>
-                            <label for="userLogin">Pseudo</label>
+                            <label for="userLevel">Niveau sportif</label>
                             <br/>
-                            <input name="userLogin"/>
+                            <select name="userLevel">
+                                <option value="">--Choisir une option--</option>
+                                <option value="1">Bas</option>
+                                <option value="2">Moyen</option>
+                                <option value="3">Elevé</option>
+                            </select>
                         </td>
                         <td>
                             <label for="userSex">Sexe</label>
                             <br/>
-                            <input name="userSex"/>
+                            <select name="userSex">
+                                <option value="">--Choisir une option--</option>
+                                <option value="F">Femme</option>
+                                <option value="H">Homme</option>
+                            </select>
                         </td>
                         <td></td>
                         <td>

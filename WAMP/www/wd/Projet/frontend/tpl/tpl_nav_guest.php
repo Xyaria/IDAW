@@ -13,15 +13,15 @@
                 <h3>Bienvenue</h3>
                 <p>Connectez-vous pour accéder au site</p>
             </div>
-            <ul>
+            <ul class="nav">
                 <li>
-                    <a class="nav connexion active" onclick="goToPage(this)">
+                    <a class="nav connexion active">
                         <span class="icon"><i class="fa-solid fa-right-to-bracket"></i></span>
                         <span class="nav_item">Connexion</span>
                     </a>
                 </li>
                 <li>
-                    <a class="nav inscription" onclick="goToPage(this)">
+                    <a class="nav inscription">
                         <span class="icon"><i class="fa-solid fa-user-plus"></i></span>
                         <span class="nav_item">Inscription</span>
                     </a>

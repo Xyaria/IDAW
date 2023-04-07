@@ -74560,8 +74560,7 @@ INSERT INTO `utilisateur` (`ID_USER`, `NOM`, `PRENOM`, `LOGIN`, `MAIL`, `MDP`, `
 (25, 'Deva', 'Nilavan', 'nilavan.deva', 'nilavan.deva@mail.fr', 'RZCTQ', 'F', '2000-07-06', 3);
 COMMIT;
 
-INSERT INTO `consommation` (`ID_USER`, `ID_ALIMENT`, `QUANTITE`, `DATE`) VALUES
-
+INSERT INTO `consomme` (`ID_USER`, `ID_ALIMENT`, `QUANTITE`, `DATE`) VALUES
 (1, 306, 250, '2023-04-05'),
 (1, 291, 300, '2023-04-05'),
 (1, 142, 500, '2023-04-06'),
@@ -74583,7 +74582,8 @@ INSERT INTO `consommation` (`ID_USER`, `ID_ALIMENT`, `QUANTITE`, `DATE`) VALUES
 (1, 281, 350, '2023-04-10'),
 (1, 666, 200, '2023-04-10'),
 (1, 2939, 50, '2023-04-10'),
-(1, 2640, 100, '2023-04-10'),
+(1, 2640, 100, '2023-04-10');
+COMMIT;
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

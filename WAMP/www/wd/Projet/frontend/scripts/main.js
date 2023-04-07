@@ -1,4 +1,21 @@
 $(document).ready(function () {
+
+    const nav = document.querySelectorAll(".nav");
+    const pages = document.querySelectorAll(".wrapper");
+
+    function goToPage(pageLink){
+        $(".active").removeClass("active");
+        $(".wrapper:not(hidden)").addClass("hidden");
+
+        $(pageLink).addClass("active");
+        pageToShow = pageLink.classList[1];
+        $(".wrapper."+pageToShow).removeClass("hidden");
+
+        //updatePage(pageToShow);
+    }
+
+    $("ul.nav a").click(function() {goToPage(this)});
+
     const warmColor4 = $(":root").css("--secondary-warm-color-4");
 
     // Paramétrage de DataTable pour la liste des consommations
@@ -34,9 +51,6 @@ $(document).ready(function () {
             'Protéines',
             'Lipides',
             'Glucides',
-            /* 'Vitamines',
-            'Minéraux',
-            'Fibres', */
             'Eau'
         ],
         datasets: [{
@@ -48,18 +62,6 @@ $(document).ready(function () {
     }
 
     const chart = $("#global-chart");
-    /* new Chart(chart, { // chart "calories des 7 derniers jours"
-        type: 'line',
-        data: dataDays,
-        options :{
-            responsive: true,
-            aspectRatio: 14 / 3,
-            maintainAspectRatio: true,
-            plugins: {
-                legend : false
-            }
-        }
-    }); */
     new Chart(chart, { // chart "nutriments de la journée"
         type: 'bar',
         data: dataNutriment,

@@ -3,7 +3,6 @@ $(document).ready(function () {
         pageLength: 7,
         lengthChange: false,
         bInfo: false,
-        autowidth: true,
         ajax: {
             url: "../backend/api/aliments/",
             method: 'GET',

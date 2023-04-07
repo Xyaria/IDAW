@@ -137,14 +137,14 @@
             return;
         }
 
-        $request = "SELECT id_aliment, quantite, date FROM consomme WHERE id_user = '" .$id_user. "'
+        $request = "SELECT aliment.label, consomme.quantite, consomme.date FROM consomme JOIN aliment ON aliment.id_aliment = consomme.id_aliment WHERE id_user = '" .$id_user. "'
         ORDER BY date desc";
         if($number != 'all'){
             $request .= " LIMIT " .$number;
         }
         $lastConsumptions = executeSQLRequest($request);
 
-        jsonMessage(201, "Success", $lastConsumptions);
+        echo json_encode($lastConsumptions, JSON_UNESCAPED_UNICODE);
     }  
     
     //TESTED
@@ -153,15 +153,15 @@
             jsonMessage(400, "Parameter is not a number");
             return;
         }
-        $consumptions = executeSQLRequest("SELECT id_aliment, quantite, date FROM consomme WHERE id_user = '" .$id_user. "'
+        $consumptions = executeSQLRequest("SELECT aliment.label, consomme.quantite, consomme.date FROM consomme JOIN aliment ON aliment.id_aliment = consomme.id_aliment WHERE id_user = '" .$id_user. "'
                             ORDER BY date desc LIMIT " . $from-1 . ", " .$to-$from+1);
-        jsonMessage(201, "Success", $consumptions);
+        echo json_encode($consumptions, JSON_UNESCAPED_UNICODE);
     }
 
     function requestGetDailyConsumption($id){
         date_default_timezone_set("Europe/Paris");
         $today = date("Y-m-d");
-        $consumptions = executeSQLRequest("SELECT nutriment.label, SUM(contient.quantite * consomme.quantite/100)
+        $consumptions = executeSQLRequest("SELECT nutriment.label, SUM(contient.quantite * consomme.quantite/100) 'quantite'
                                             FROM consomme, aliment, contient, nutriment
                                             WHERE consomme.id_user = ".$id."
                                             AND consomme.id_aliment = aliment.id_aliment
@@ -170,7 +170,7 @@
                                             AND consomme.date = '".$today."'
                                             GROUP BY nutriment.label
                                             ORDER BY nutriment.label");
-        jsonMessage(201, "Success", $consumptions);
+        echo json_encode($consumptions, JSON_UNESCAPED_UNICODE);
     }
 
     //TESTED

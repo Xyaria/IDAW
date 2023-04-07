@@ -1,38 +1,29 @@
 $(document).ready(function () {
     $("#repas").DataTable({
-        pageLength: 9,
+        pageLength: 7,
         lengthChange: false,
         bInfo: false,
         ajax: {
-            url: "../backend/api/users/consommation", // ajouter la bonne API
+            url: "../backend/api/users/consommation?id=1", // ajouter la bonne API
             method: 'GET',
             dataSrc: ''
         },
         columns: [
             {
-                data: 'Aliment',
+                data: 'label',
+                width: '50%',
                 defaultContent: '0'
             },
             {
-                data: 'Quantité',
+                data: 'quantite',
+                width: '25%',
                 defaultContent: '0'
             },
             {
-                data: 'Date',
+                data: 'date',
+                width: '25%',
                 defaultContent: '1970-01-01'
             }
         ]
-    });
-
-    $.ajax({
-        url: "../backend/api/users/consommation",
-        method: 'GET',
-        dataType: 'json'
-    })
-    .done((consos) => {
-        var conso_list = [];
-        consos.forEach(conso => {
-            conso_list.push(conso['Nom']);
-        });
     });
 });

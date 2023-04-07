@@ -3,11 +3,11 @@
         <button id="add-conso" onclick="addConso()">Ajouter un repas consommé</button>
     </div>
     <div class="bloc liste-repas">
-        <table id="repas" class="hover row-border">
+        <table id="repas" class="hover row-border" style="width:100%;">
             <thead>
-                <th>Aliment</th>
-                <th>Quantité</th>
-                <th>Date</th>
+                <th style="max-width:50%;">Aliment</th>
+                <th style="max-width:25%;">Quantité (g)</th>
+                <th style="max-width:25%;">Date</th>
             </thead>
             <tbody>
                 <tr>
