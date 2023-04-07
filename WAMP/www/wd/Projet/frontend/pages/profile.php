@@ -6,8 +6,9 @@
     $userBirthday = '';
     $userLevel = '';
     $userSex= '';
+    $userId = $_SESSION['id'];
 
-    if(isset($_SESSION['id'])){
+/*     if(isset($_SESSION['id'])){
         $userSurname = $_SESSION['userSurname'];
         $userName = $_SESSION['userName'];
         $userMail = $_SESSION['userMail'];
@@ -15,7 +16,10 @@
         $userBirthday = $_SESSION['userBirthday'];
         $userLevel = $_SESSION['userLevel'];
         $userSex= $_SESSION['userSex'];
-    }
+    } */
+
+    $level = [1 => 'Bas', 2 => 'Moyen', 3 => 'Elevé'];
+    $sex = ['H'=> 'Homme', 'F' => 'Femme'];
 
     echo '<div class="wrapper profile hidden">
         <div class="bloc user">
@@ -42,7 +46,7 @@
                     <td>
                         <label>Niveau sportif</label>
                         <br/>
-                        <span class="userInfo" id="userLevel">'.$userLevel.'</span>
+                        <span class="userInfo" id="userLevel">'.$level[$userLevel].'</span>
                     </td>
                 </tr>
                 <tr>
@@ -59,7 +63,10 @@
                     <td>
                         <label>Sexe</label>
                         <br/>
-                        <span class="userInfo" id="userSex">'.$userSex.'</span>
+                        <span class="userInfo" id="userSex">'.$sex[$userSex].'</span>
+                    </td>
+                    <td>
+                        <span hidden class="userInfo" id="userId">' .$userId. '</span>
                     </td>
                 </tr>
                 
@@ -74,22 +81,22 @@
                         <td>
                             <label for="userSurname">Nom</label>
                             <br/>
-                            <input name="userSurname"/>
+                            <input name="userSurname" value="'.$userSurname.'"/>
                         </td>
                         <td>
                             <label for="userName">Prénom</label>
                             <br/>
-                            <input name="userName"/>
+                            <input name="userName" value="'.$userName.'"/>
                         </td>
                         <td>
                             <label for="userMail">Mail</label>
                             <br/>
-                            <input name="userMail"/>
+                            <input name="userMail" value="'.$userMail.'"/>
                         </td>
                         <td>
                             <label for="userLogin">Pseudo</label>
                             <br/>
-                            <input name="userLogin"/>
+                            <input name="userLogin" value="'.$userLogin.'"/>
                         </td>
                         <td>
                             <label for="userPassword_old">Ancien mot de passe</label>
@@ -101,12 +108,12 @@
                         <td>
                             <label for="userBirthday">Anniversaire</label>
                             <br/>
-                            <input type="date" name="userBirthday"/>
+                            <input type="date" name="userBirthday" value="'.$userBirthday.'"/>
                         </td>
                         <td>
                             <label for="userLevel">Niveau sportif</label>
                             <br/>
-                            <select name="userLevel">
+                            <select name="userLevel" selected="'.$userLevel.'">
                                 <option value="">--Choisir une option--</option>
                                 <option value="1">Bas</option>
                                 <option value="2">Moyen</option>
@@ -116,7 +123,7 @@
                         <td>
                             <label for="userSex">Sexe</label>
                             <br/>
-                            <select name="userSex">
+                            <select name="userSex" selected="'.$userSex.'">
                                 <option value="">--Choisir une option--</option>
                                 <option value="F">Femme</option>
                                 <option value="H">Homme</option>

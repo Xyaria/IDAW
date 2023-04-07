@@ -28,5 +28,8 @@
 
     <script src="./scripts/aliments_table.js"></script>
     <script src="./scripts/repas_table.js"></script>
+    <?php
+        require_once("./scripts/dashboard.php");
+    ?>
 
 </head>

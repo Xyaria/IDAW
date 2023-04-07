@@ -25,7 +25,7 @@ connection
 * + JSON_PRETTY_PRINT to have a nicely printed json for debugging
 * -> json_encode($text, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
 */
-    require_once("../generalAPI.php");
+    require_once("./generalAPI.php");
 
     function main(){        
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -102,7 +102,7 @@ connection
         $user = json_decode(file_get_contents("php://input"), true);
         $user = $user[0];
         
-        if(!isIdValide($user, 'id_user', 'id_user', 'utilisateur')){()
+        if(!isIdValide($user, 'id_user', 'id_user', 'utilisateur')){
             return;
         }
         if(countNonMissingRequiredValues($user, $requiredValues) == 0){
@@ -139,7 +139,7 @@ connection
 
     function tryLogin($login, $mdp){
         global $pdo;
-        $user = executeSQLRequest("SELECT * FROM `utilisateur` WHERE `login` = '". $login . "' AND `mdp` = '" . $mdp ."'");
+        $user = executeSQLRequest("SELECT login, nom, prenom, mail, id_niveau, sexe, date_naissance FROM `utilisateur` WHERE `login` = '". $login . "' AND `mdp` = '" . $mdp ."'");
 
         if($user == null){
             jsonMessage(400, "Login or password invalid");

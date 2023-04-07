@@ -17,7 +17,6 @@
                                 })
                                 .done((aliments) => {
                                     aliments.forEach(aliment => {
-                                        console.log(aliment['Nom']);
                                         $("#db_aliments").append('<option value="'+ aliment['Nom'] +'">');
                                     });
                                 });

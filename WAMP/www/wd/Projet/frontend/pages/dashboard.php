@@ -12,8 +12,8 @@ function dashboard($isConnected){
                 <div id="bar"></div>
             </div>
             <div class="text">
-                <p id="calories-count">1950/2500 kcal</p>
-                <p id="calories-message">Continue comme ça !</p>
+                <p id="calories-count"></p>
+                <p id="calories-message"></p>
             </div>
             <!--Progression de l\'utilisateur dans son ingestion de calorie-->
         </div>
