@@ -1,0 +1,29 @@
+.wrapper.connexion {
+    grid-template:
+    ". . ." 1fr
+    ". connect ." 2fr
+    ". . ." 1fr
+    / 1fr 1fr 1fr;
+    height: 90vh;
+    width: 80vw;
+}
+
+.bloc.connect {
+    padding: 1em;
+    grid-area: connect;
+    text-align: center;
+}
+
+.bloc.connect *:not(input) {
+    padding: 1em;
+}
+
+.bloc.connect input {
+    padding: 0.2em;
+}
+
+.bloc.connect input[type='submit'] {
+    padding: 0.5em 0.7em;
+    margin-top: 1em;
+}
+

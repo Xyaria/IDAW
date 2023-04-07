@@ -11,7 +11,7 @@
 
             // ajouter les pages dynamiquement en fonction du menu cliqué
             require_once("./pages/dashboard.php");
-            require_once("./pages/connection.php");
+            require_once("./pages/connexion.php");
 
             require_once("./pages/profile.php");
             displayPages();
@@ -25,14 +25,32 @@
         ?>
     </div>
 </body>
+<script>
+const nav = document.querySelectorAll(".nav");
+    const pages = document.querySelectorAll(".wrapper");
+
+function goToPage(pageLink){
+    nav.forEach(nav_item => {
+        nav_item.classList.remove("active");
+        console.log("Removed active");
+    });
+    pages.forEach(page => {
+        page.classList.add("hidden");
+        console.log("Hidden all");
+    })
+    $(pageLink).addClass("active");
+    console.log("Added active to " + pageLink.classList);
+    // ajouter affichage de la page de destination
+}
+</script>
 
 <?php
     function displayPages(){
-        $isConnected = isset($_SESSION['id_user']);
+        $isConnected = false;//isset($_SESSION['id_user']);
         tpl_nav($isConnected);
         tpl_nav_guest($isConnected);
         dashboard($isConnected);
-        connection($isConnected);
+        connexion($isConnected);
     }
 // dashboard -> résumé, que les x derniers repas
 // page "détails repas" -> toutes les conso + ajouter une conso

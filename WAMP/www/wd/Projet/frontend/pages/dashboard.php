@@ -1,6 +1,6 @@
 <?php 
-function dashboard($isHidden){
-    if($isHidden){
+function dashboard($isConnected){
+    if(!$isConnected){
         echo '<div class="wrapper dashboard hidden">';
     }
     else{

@@ -1,4 +1,4 @@
-<div class="wrapper aliments">
+<div class="wrapper aliments hidden">
     <div class="bloc liste-aliment">
         <table id="aliment" class="hover row-border">
             <thead>

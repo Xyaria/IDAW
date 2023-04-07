@@ -1,6 +1,6 @@
 <?php 
-    function tpl_nav($isHidden){
-        if($isHidden){
+    function tpl_nav($isConnected){
+        if(!$isConnected){
             echo '<div class="sidebar hidden">';
         }
         else{
@@ -38,12 +38,6 @@
                         <span class="nav_item">Profil</span>
                     </a>
                 </li>
-                <!-- <li>
-                    <a>
-                        <span class="icon"><i class="fa-solid fa-gear"></i></span>
-                        <span class="nav_item">Paramètres</span>
-                    </a>
-                </li> -->
             </ul>
         </nav>
     </div>';
