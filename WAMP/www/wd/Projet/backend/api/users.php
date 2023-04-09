@@ -54,7 +54,6 @@ connection
         $requiredValues= getUserTableColumns();
 
         $user = json_decode(file_get_contents("php://input"), true);
-        $user = $user[0];
 
         if(isMissingRequiredValues($user, $requiredValues)){
             jsonMessage(400, "Missing values");
@@ -84,12 +83,10 @@ connection
             jsonMessage(400, "Bad path");
             return;
         }
-
         $requiredValues = array('login', 'mdp');
         $user = json_decode(file_get_contents("php://input"), true);
-        $user = $user[0];
         if(isMissingRequiredValues($user, $requiredValues)){
-            jsonMessage(400, "Missing values");
+            jsonMessage(400, "Missing values", ["User" => $user]);
             return;
         }
 
@@ -100,7 +97,6 @@ connection
     function requestUpdate(){
         $requiredValues= getUserTableColumns();
         $user = json_decode(file_get_contents("php://input"), true);
-        $user = $user[0];
         
         if(!isIdValide($user, 'id_user', 'id_user', 'utilisateur')){
             return;
@@ -126,7 +122,6 @@ connection
 
     function requestDeleteUser(){
         $user = json_decode(file_get_contents("php://input"), true);
-        $user = $user[0];
         if(!isIdValide($user, 'id_user', 'id_user', 'utilisateur')){ //error message already treated
             return;
         }
@@ -139,7 +134,7 @@ connection
 
     function tryLogin($login, $mdp){
         global $pdo;
-        $user = executeSQLRequest("SELECT login, nom, prenom, mail, id_niveau, sexe, date_naissance FROM `utilisateur` WHERE `login` = '". $login . "' AND `mdp` = '" . $mdp ."'");
+        $user = executeSQLRequest("SELECT id_user, login, nom, prenom, mail, id_niveau, sexe, date_naissance FROM `utilisateur` WHERE `login` = '". $login . "' AND `mdp` = '" . $mdp ."'");
 
         if($user == null){
             jsonMessage(400, "Login or password invalid");

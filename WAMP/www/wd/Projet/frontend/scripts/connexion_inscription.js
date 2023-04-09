@@ -5,11 +5,33 @@ function connexion_getValues(){
         login: userLogin, 
         mdp: userPassword
     };
-    return user;
+
+    $.ajax({
+        url: API_PATH + "/users.php/connect",
+        method: 'POST',
+        dat_type:'application/json',
+        data: JSON.stringify(user)
+    }).done((returnedUser) => {
+        if(returnedUser['status'] == 200){
+            $_SESSION['userSurname'] = returnedUser['user']['prenom'];
+            $_SESSION['userName'] = returnedUser['user']['nom'];
+            $_SESSION['userMail'] = returnedUser['user']['mail'];
+            $_SESSION['userLogin'] = returnedUser['user']['login'];
+            $_SESSION['userBirthday'] = returnedUser['user']['date_naissance'];
+            $_SESSION['userLevel'] = returnedUser['user']['id_niveau'];
+            $_SESSION['userSex'] = returnedUser['user']['sexe'];
+            $_SESSION['id'] = returnedUser['user']['id_user'];
+            $_SESSION['mdp'] = returnedUser['user']['mdp'];
+            
+        }
+
+    }
+    );
+    //location.reload();
 }
 
 function inscription_getValues(){
-    $(".signin #warning_message").html("");
+    $(".signin #warning_message").empty();
     var userLogin = $(".signin input[name=userLogin]").val();
     var userPassword = $(".signin input[name=userPassword]").val(); 
     var userPassword_confirm = $(".signin input[name=userPassword_confirm]").val(); 

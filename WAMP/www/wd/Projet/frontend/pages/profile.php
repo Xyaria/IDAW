@@ -4,11 +4,11 @@
     $userMail = '';
     $userLogin = '';
     $userBirthday = '';
-    $userLevel = '';
-    $userSex= '';
-    $userId = $_SESSION['id'];
+    $userLevel = 1;
+    $userSex= 'H';
+    $userId = '';
 
-/*     if(isset($_SESSION['id'])){
+    if(isset($_SESSION['id'])){
         $userSurname = $_SESSION['userSurname'];
         $userName = $_SESSION['userName'];
         $userMail = $_SESSION['userMail'];
@@ -16,7 +16,8 @@
         $userBirthday = $_SESSION['userBirthday'];
         $userLevel = $_SESSION['userLevel'];
         $userSex= $_SESSION['userSex'];
-    } */
+        $userId = $_SESSION['id'];
+    }
 
     $level = [1 => 'Bas', 2 => 'Moyen', 3 => 'Elevé'];
     $sex = ['H'=> 'Homme', 'F' => 'Femme'];
@@ -75,7 +76,7 @@
         <div class="bloc modify">
             <h1>Modifier le profil</h1>
             <hr/>
-            <form onsubmit="event.preventDefault()">
+            <form action="" id="modify">
                 <table class="form">
                     <tr>
                         <td>

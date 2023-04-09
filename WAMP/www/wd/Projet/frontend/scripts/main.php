@@ -1,3 +1,5 @@
+<script>
+var API_PATH = "<?php echo _API_PATH;?>";
 $(document).ready(function () {
 
     const nav = document.querySelectorAll(".nav");
@@ -12,7 +14,7 @@ $(document).ready(function () {
         pageToShow = pageLink.classList[1];
         $(".wrapper."+pageToShow).removeClass("hidden");
 
-        //updatePage(pageToShow);
+        updatePage(pageToShow);
     }
 
     $("ul.nav a").click(function() {goToPage(this)});
@@ -35,4 +37,11 @@ $(document).ready(function () {
                 break;
         }
     }
+
+    $("form#modify").submit(function(event) {
+        event.preventDefault();
+        profile_modifyUser();
+    });
 });
+
+</script>

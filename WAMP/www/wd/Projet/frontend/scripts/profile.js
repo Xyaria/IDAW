@@ -1,4 +1,5 @@
 function profile_modifyUser(){
+    $(".modify #warning_message").empty();
     var userLogin = $(".signin input[name=userLogin]").val();
     var userPassword_old = $(".signin input[name=userPassword_old]").val(); 
     var userSurname = $(".signin input[name=userSurname]").val(); 
@@ -12,7 +13,7 @@ function profile_modifyUser(){
         var userPassword = $(".signin input[name=userPassword]").val(); 
     }
     else{
-        $(".modify table").append("<p>Mot de passe incorrect</p>");
+        $(".modify #warning_message").html("Mot de passe incorrect");
         return;
     }
     
@@ -27,4 +28,8 @@ function profile_modifyUser(){
         niveau: userLevel
     };
     return user;
+}
+
+function updatePage_profile(){
+    
 }

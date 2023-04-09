@@ -28,7 +28,7 @@
 
 <?php
     function displayPages(){
-        $isConnected = true;//isset($_SESSION['id_user']);
+        $isConnected = isset($_SESSION['id']);
         tpl_nav($isConnected);
         tpl_nav_guest($isConnected);
         dashboard($isConnected);

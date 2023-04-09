@@ -13,7 +13,10 @@
     <script id="Chart.js" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- ------------------ Own files ------------------ -->
-    <script src="./scripts/main.js"></script>
+    <?php 
+        require_once("./config.php");
+        require_once( "./scripts/main.php");
+    ?>
     
     <!--<link href="./css/color_purple.css" type="text/css" rel="stylesheet">-->
     <link href="./css/color_green.css" type="text/css" rel="stylesheet">
@@ -28,8 +31,8 @@
 
     <script src="./scripts/aliments.js"></script>
     <script src="./scripts/mes_repas.js"></script>
-    <?php
-        require_once("./scripts/dashboard.php");
-    ?>
+    <script src="./scripts/profile.js"></script>
+    <script src="./scripts/connexion_inscription.js"></script>
+    <script src="./scripts/dashboard.js"></script>
 
 </head>

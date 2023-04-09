@@ -8,7 +8,7 @@ function connexion($isConnected){
     }
     echo '<div class="bloc connect">
             <h3>Connectez-vous pour accéder à votre espace</h3>
-            <form onsubmit="event.preventDefault()">
+            <form onsubmit="event.preventDefault(); connexion_getValues();">
                 <label for="userLogin">Login</label>
                 <br>
                 <input name="userLogin"/>
