@@ -1,4 +1,4 @@
-$(document).ready(function () {
+function aliments_initTable(){
     $("#aliment").DataTable({
         pageLength: 7,
         lengthChange: false,
@@ -58,4 +58,8 @@ $(document).ready(function () {
             aliment_liste.push(aliment['Nom']);
         });
     });
-});
+}
+
+function updatePage_aliments(){
+    aliments_initTable();
+}

@@ -26,8 +26,8 @@
 
     <link href="./assets/favicon.ico" rel="favicon">
 
-    <script src="./scripts/aliments_table.js"></script>
-    <script src="./scripts/repas_table.js"></script>
+    <script src="./scripts/aliments.js"></script>
+    <script src="./scripts/mes_repas.js"></script>
     <?php
         require_once("./scripts/dashboard.php");
     ?>

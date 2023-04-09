@@ -8,21 +8,21 @@
                         <td>
                             <label for="userLogin">Login</label>
                             <br>
-                            <input name="userLogin"/>
+                            <input name="userLogin" type="text"/>
                         </td>
                         <td>
                             <label for="userSurname">Nom</label>
                             <br>
-                            <input name="userSurname"/>
+                            <input name="userSurname" type="text"/>
                         </td>
                         <td>
                             <label for="userSex">Sexe</label>
                             <br>
-                            <select name="userSex">
-                                <option value="">--Choisir une option--</option>
-                                <option value="F">Femme</option>
-                                <option value="H">Homme</option>
-                            </select>
+                            <input type="radio" name="userSex" value="F">
+                            <span>Femme</span>
+                            <br>
+                            <input type="radio" name="userSex" value="H">
+                            <span>Homme</span>
                         </td>
                     </tr>
                     <tr>
@@ -34,7 +34,7 @@
                         <td>
                             <label for="userName">Prénom</label>
                             <br>
-                            <input name="userName"/>
+                            <input name="userName" type="text"/>
                         </td>
                         <td>
                             <label for="userLevel">Niveau sportif</label>
@@ -49,6 +49,11 @@
                     </tr>
                     <tr>
                         <td>
+                            <label for="userMail">Adresse e-mail</label>
+                            <br>
+                            <input name="userMail" type="text"/>
+                        </td>
+                        <td>
                             <label for="userPassword_confirm">Confirmer le mot de passe</label>
                             <br>
                             <input name="userPassword_confirm" type="password"/>
@@ -60,6 +65,7 @@
                         </td>
                     </tr>
                 </table>
+                <p id="warning_nessage"></p>
                 <input type="submit" value="Inscription" onclick=""/>
             </form>
         </div>

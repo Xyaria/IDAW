@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     const nav = document.querySelectorAll(".nav");
     const pages = document.querySelectorAll(".wrapper");
+    const warmColor4 = $(":root").css("--secondary-warm-color-4");
 
     function goToPage(pageLink){
         $(".active").removeClass("active");
@@ -16,44 +17,22 @@ $(document).ready(function () {
 
     $("ul.nav a").click(function() {goToPage(this)});
 
-    const warmColor4 = $(":root").css("--secondary-warm-color-4");
-
-    // Paramétrage de DataTable pour la liste des consommations
-    $('#conso-summary').DataTable({
-        pageLength: 6,
-        lengthChange: false,
-        bInfo: false,
-        paging: false,
-        bFilter: false
-    });
-
-    // Paramétrage de Chart.js pour l'affichage d'un graphique
-    const dataNutriment = {
-        labels: [
-            'Protéines',
-            'Lipides',
-            'Glucides',
-            'Eau'
-        ],
-        datasets: [{
-            label: "%",
-            data:[100, 92, 57, 100, 83, 68, 28],
-            backgroundColor: warmColor4,
-            hoverOffset: 4
-        }]
-    }
-
-    const chart = $("#global-chart");
-    new Chart(chart, { // chart "nutriments de la journée"
-        type: 'bar',
-        data: dataNutriment,
-        options :{
-            responsive: true,
-            aspectRatio: 14 / 3,
-            maintainAspectRatio: true,
-            plugins: {
-                legend : false
-            }
+    function updatePage(page){
+        switch (page) {
+            case "dashboard":
+                updatePage_dashboard();
+                break;
+            case "mes-repas":
+                updatePage_mesRepas();
+                break;
+            case "aliments":
+                updatePage_aliments();
+                break;
+            case "profile":
+                updatePage_profile();
+                break;    
+            default:
+                break;
         }
-    });    
+    }
 });

@@ -1,4 +1,4 @@
-$(document).ready(function () {
+function mesRepas_initTable(){
     $("#repas").DataTable({
         pageLength: 7,
         lengthChange: false,
@@ -26,4 +26,8 @@ $(document).ready(function () {
             }
         ]
     });
-});
+}
+
+function updatePage_mesRepas(){
+    mesRepas_initTable();
+}

@@ -9,7 +9,7 @@
     grid-area: liste-aliment;
 }
 
-.wrapper.aliments td, .wrapper.mes_repas td {
+.wrapper.aliments td, .wrapper.mes-repas td {
     white-space: pre-wrap !important;
     word-wrap: break-word !important;
     table-layout: fixed;

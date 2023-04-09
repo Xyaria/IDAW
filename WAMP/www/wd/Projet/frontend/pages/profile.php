@@ -137,6 +137,7 @@
                         </td>
                     </tr>
                 </table>
+                <p id="warning_message"></p>
                 <input type="submit" value="Enregistrer"/>
             </form>
         </div>

@@ -21,7 +21,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav mes_repas">
+                    <a class="nav mes-repas">
                         <span class="icon"><i class="fa-solid fa-utensils"></i></span>
                         <span class="nav_item">Mes Repas</span>
                     </a>

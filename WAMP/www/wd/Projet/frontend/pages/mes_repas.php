@@ -1,4 +1,4 @@
-<div class="wrapper mes_repas hidden">
+<div class="wrapper mes-repas hidden">
     <div class="bloc add-btn">
         <button id="add-conso" onclick="addConso()">Ajouter un repas consommé</button>
     </div>

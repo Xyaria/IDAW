@@ -36,40 +36,104 @@
         });
         return nutriment_liste;
     }
-$(document).ready(function() {
-    console.log("am in");
-    
-    var nutriment_liste = getTodaysValues(1);
-    var calories; // à récupérer
-    nutriment_liste.forEach(nutriment => {
-        console.log(nutriment['label']);
-        if(nutriment['label'] = 'Energie'){
-            calories = nutriment['quantite'];
-        }
-    });
-    var id = $("#userId").html;
-    var caloriesMax = getDailyCalories($("#userSex").html, $("#userLevel").html); // à calculer
-    var progress = calories / caloriesMax * 100; // à calculer
 
-    const progressBar = $("#bar");
-    const calMessage = $("#calories-message");
-    const calCount = $("#calories-count");
+    function getNutrimentQuantity(){
+        var nutriment_liste = getTodaysValues(userId);
+        var nutriment_label = ['Protéines', 'Lipides', 'Glucides', 'Eau'];
+        var nutriment_quantity = [];
+        nutriment_label.forEach(label => {
+            nutriment_liste.forEach(nutriment => {
+                if(nutriment['label'] == label){
+                    nutriment_quantity.push(nutriment['quantite']);
+                }
+            });
+        });
 
-    $(progressBar).css('width', progress + "%");
-    $(calCount).text(calories + "/" + caloriesMax + " kcal");
-    $(calMessage).text("Continue comme ça !");
- 
-    // changer le message en fonction du progrès (<10 & <50 ?)
-
-    // Message spécial si trop dépassé (à voir où mettre la limite, il y a des recommandations ?)
-    if(progress > 100){
-        $(progressBar).css('width', '100%');
-        $(progressBar).css('background-image', 'linear-gradient(135deg, var(--secondary-cool-color-4) 0%, var(--accent-color) 100%)');
-        $(progressBar).css('border', '3px solid var(--accent-color)');
-
-        $(calMessage).text("Calories max dépassées !!");
-        $(calMessage).css('color', 'var(--accent-color)');
-        $(calCount).css('color', 'var(--accent-color)');
+        return nutriment_quantity;
     }
-});
+
+    function dashboard_initProgressBar(){ // Paramétrage de la barre de progression des apports en calories
+        var nutriment_liste = getTodaysValues(userId);
+        var calories;
+        nutriment_liste.forEach(nutriment => {
+            if(nutriment['label'] == 'Energie'){
+                calories = nutriment['quantite'];
+            }
+        });
+        var id = $("#userId").html;
+        var caloriesMax = getDailyCalories($("#userSex").html, $("#userLevel").html);
+        var progress = calories / caloriesMax * 100;
+
+        const progressBar = $("#bar");
+        const calMessage = $("#calories-message");
+        const calCount = $("#calories-count");
+
+        $(progressBar).css('width', progress + "%");
+        $(calCount).text(calories + "/" + caloriesMax + " kcal");
+        $(calMessage).text("Continue comme ça !");
+    
+        // changer le message en fonction du progrès (<10 & <50) ?
+
+        // Message spécial si trop dépassé (à voir où mettre la limite, il y a des recommandations ?)
+        if(progress > 90 && progress <= 110){
+            $(calMessage).text("Calories max atteintes !");
+        }
+        
+        if(progress > 110){
+            $(progressBar).css('width', '100%');
+            $(progressBar).css('background-image', 'linear-gradient(135deg, var(--secondary-cool-color-4) 0%, var(--accent-color) 100%)');
+            $(progressBar).css('border', '3px solid var(--accent-color)');
+
+            $(calMessage).text("Calories max dépassées !!!");
+            $(calMessage).css('color', 'var(--accent-color)');
+            $(calCount).css('color', 'var(--accent-color)');
+        }
+    }
+
+    function dashboard_initChart(){ // Paramétrage de Chart.js pour l'affichage d'un graphique 
+        const dataNutriment = getNutrimentQuantity();
+            labels: [
+                'Protéines',
+                'Lipides',
+                'Glucides',
+                'Eau'
+            ],
+            datasets: [{
+                label: "%",
+                data: calculateData(),
+                backgroundColor: warmColor4,
+                hoverOffset: 4
+            }]
+        }
+
+        const chart = $("#global-chart");
+        new Chart(chart, { // chart "nutriments de la journée"
+            type: 'bar',
+            data: dataNutriment,
+            options :{
+                responsive: true,
+                aspectRatio: 14 / 3,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend : false
+                }
+            }
+        });   
+    }
+
+    function dashboard_initTable(){ // Paramétrage de DataTable pour la liste des consommations
+        $('#conso-summary').DataTable({
+            pageLength: 6,
+            lengthChange: false,
+            bInfo: false,
+            paging: false,
+            bFilter: false
+        });
+    }
+
+    function updatePage_dasboard(){
+        dashboard_initChart();
+        dashboard_initProgressBar();
+        dashboard_initTable();
+    }
 </script>
