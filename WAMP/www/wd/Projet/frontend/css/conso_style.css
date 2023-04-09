@@ -15,17 +15,17 @@
     table-layout: fixed;
 }
 
-.add-btn {
+.btns {
     height: 4em;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
-#add-conso {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+#add-conso, #modify-conso, #delete-conso {
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 
@@ -45,6 +45,7 @@
 }
 
 .layer .bloc {
+    position: relative;
     grid-area: blocAdd;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.8);
 }
@@ -52,4 +53,12 @@
 .layer .bloc * {
     text-align: center;
     margin: 1em auto;
+}
+
+.layer span {
+    display: block; 
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    cursor: pointer;
 }

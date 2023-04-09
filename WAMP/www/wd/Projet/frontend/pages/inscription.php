@@ -66,7 +66,7 @@
                     </tr>
                 </table>
                 <p id="warning_nessage"></p>
-                <input type="submit" value="Inscription" onclick=""/>
+                <input type="submit" value="Inscription"/>
             </form>
         </div>
     </div>';

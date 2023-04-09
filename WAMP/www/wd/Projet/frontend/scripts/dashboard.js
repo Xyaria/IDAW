@@ -7,59 +7,62 @@ function getDailyCalories(sex, sportLevel){
     y = 0;
     switch (sportLevel) {
         case 'Bas':
-            y=1
+            y = 0;
             break;
         case 'Moyen':
-            y=2
+            y = 1;
             break;
         case 'Elevé':
-            y=3
+            y = 2;
             break;
     }
     return tabDailyValues[3*x+y]; 
 }
 
-function getTodaysValues(id){
-    var nutriment_liste = [];
-    $.ajax({
-        url: API_PATH + "/users/consommation/daily?id=" + id,
-        method: 'GET',
-        dataType: 'json'
-    })
-    .done((nutriment) => {
-        console.log("got list");
-        nutriment.forEach(nutriment => {
-            nutriment_liste.push(nutriment);
+async function getTodaysValues(id){
+    return new Promise((resolve, reject) => {
+        var nutriment_liste = [];
+        $.ajax({
+            url: API_PATH + "/users/consommation/daily?id=" + id,
+            method: 'GET',
+            dataType: 'json'
+        })
+        .done((nutriment) => {
+            nutriment.forEach(nutriment => {
+                nutriment_liste.push(nutriment);
+            });
+            resolve(nutriment_liste);
         });
-    });
-    return nutriment_liste;
+    })
 }
 
-function getNutrimentQuantity(){
-    var nutriment_liste = getTodaysValues(userId);
-    var nutriment_label = ['Protéines', 'Lipides', 'Glucides', 'Eau'];
+async function getNutrimentQuantity(){
+    var id = $(".userInfo#userId").text();
+    var nutriment_liste = await getTodaysValues(id);
+    var nutriment_label = ['Protéines', 'Lipides', 'Glucides', 'Fibres alimentaires'];
     var nutriment_quantity = [];
+
     nutriment_label.forEach(label => {
         nutriment_liste.forEach(nutriment => {
-            if(nutriment['label'] == label){
-                nutriment_quantity.push(nutriment['quantite']);
+            if(nutriment.label == label){
+                nutriment_quantity.push(nutriment.quantite);
             }
         });
     });
-
     return nutriment_quantity;
 }
 
-function dashboard_initProgressBar(){ // Paramétrage de la barre de progression des apports en calories
-    var nutriment_liste = getTodaysValues(userId);
+async function dashboard_initProgressBar(){ // Paramétrage de la barre de progression des apports en calories
+    var id = $(".userInfo#userId").text();
+    var nutriment_liste = await getTodaysValues(id);
     var calories;
-    nutriment_liste.forEach(nutriment => {
+    nutriment_liste.forEach((nutriment) => {
         if(nutriment['label'] == 'Energie'){
             calories = nutriment['quantite'];
         }
     });
-    var id = $("#userId").html;
-    var caloriesMax = getDailyCalories($("#userSex").html, $("#userLevel").html);
+
+    var caloriesMax = getDailyCalories($(".userInfo#userSex").text(), $(".userInfo#userLevel").text());
     var progress = calories / caloriesMax * 100;
 
     const progressBar = $("#bar");
@@ -70,9 +73,6 @@ function dashboard_initProgressBar(){ // Paramétrage de la barre de progression
     $(calCount).text(calories + "/" + caloriesMax + " kcal");
     $(calMessage).text("Continue comme ça !");
 
-    // changer le message en fonction du progrès (<10 & <50) ?
-
-    // Message spécial si trop dépassé (à voir où mettre la limite, il y a des recommandations ?)
     if(progress > 90 && progress <= 110){
         $(calMessage).text("Calories max atteintes !");
     }
@@ -88,8 +88,20 @@ function dashboard_initProgressBar(){ // Paramétrage de la barre de progression
     }
 }
 
-function dashboard_initChart(){ // Paramétrage de Chart.js pour l'affichage d'un graphique 
-    const dataNutriment = getNutrimentQuantity();
+async function dashboard_initChart(){ // Paramétrage de Chart.js pour l'affichage d'un graphique 
+    var dataNutriment = await getNutrimentQuantity();
+    var caloriesMax = getDailyCalories($(".userInfo#userSex").text(), $(".userInfo#userLevel").text());
+    var recommendedNutriment = [50/2000, 70/2000, 270/2000, 25/2000];
+    const warmColor4 = $(":root").css("--secondary-warm-color-4");
+    const alertColor = $(":root").css("--accent-color");
+    var colors = [];
+    
+    for (let i = 0; i < dataNutriment.length; i++) {
+        dataNutriment[i] = (dataNutriment[i]/caloriesMax)/recommendedNutriment[i] *100;
+        colors[i] = dataNutriment[i] >= 100 ? alertColor : warmColor4;
+        dataNutriment[i] = dataNutriment[i] > 100 ? 100 : dataNutriment[i];
+    }
+
 
     const chart = $("#global-chart");
     new Chart(chart, { // chart "nutriments de la journée"
@@ -99,13 +111,12 @@ function dashboard_initChart(){ // Paramétrage de Chart.js pour l'affichage d'u
                 'Protéines',
                 'Lipides',
                 'Glucides',
-                'Eau'
+                'Fibres'
             ],
-            data: dataNutriment,
             datasets: [{
                 label: "%",
-                data: calculateData(),
-                backgroundColor: warmColor4,
+                data: dataNutriment,
+                backgroundColor: colors,
                 hoverOffset: 4
             }]
         },
@@ -113,6 +124,11 @@ function dashboard_initChart(){ // Paramétrage de Chart.js pour l'affichage d'u
             responsive: true,
             aspectRatio: 14 / 3,
             maintainAspectRatio: true,
+            scales: {
+                y: {
+                    max: 100
+                }
+            },
             plugins: {
                 legend : false
             }
@@ -121,17 +137,45 @@ function dashboard_initChart(){ // Paramétrage de Chart.js pour l'affichage d'u
 }
 
 function dashboard_initTable(){ // Paramétrage de DataTable pour la liste des consommations
-    $('#conso-summary').DataTable({
+    var conso_summary = $('#conso-summary').DataTable({
         pageLength: 6,
         lengthChange: false,
         bInfo: false,
         paging: false,
-        bFilter: false
-    });
+        bFilter: false,
+        ajax: {
+            url: API_PATH + "/users/consommation?last=6&id=" + $(".userInfo#userId").text(),
+            method: 'GET',
+            dataSrc: ''
+        },
+        columns: [
+            {
+                data: 'label',
+                width: '50%',
+                defaultContent: '0'
+            },
+            {
+                data: 'quantite',
+                width: '25%',
+                defaultContent: '0'
+            },
+            {
+                data: 'date',
+                width: '25%',
+                defaultContent: '1970-01-01'
+            }
+        ]
+    })
 }
 
 function updatePage_dashboard(){
     dashboard_initChart();
     dashboard_initProgressBar();
-    dashboard_initTable();
+
+    if(!$.fn.DataTable.isDataTable('#conso-summary')){
+        dashboard_initTable();
+    }
+    else{
+        conso_summary.ajax.reload();
+    }
 }

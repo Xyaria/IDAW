@@ -19,6 +19,17 @@ function connexion($isConnected){
                 <br>
                 <input type="submit" value="Connexion"/>
             </form>
+            <form id="hidden_form" method="POST">
+                <input name="userLogin" type="hidden"/>
+                <input name="userId" type="hidden"/>
+                <input name="userSurname" type="hidden"/>
+                <input name="userSex" type="hidden"/>
+                <input name="userPassword" type="hidden"/>
+                <input name="userName" type="hidden"/>
+                <input name="userLevel" type="hidden"/>
+                <input name="userMail" type="hidden"/>
+                <input name="userBirthday" type="hidden"/>
+            </form>
         </div>
     </div>';
 }

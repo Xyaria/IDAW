@@ -35,7 +35,7 @@
     function requestNewConsumption(){
         $requiredValues= getConsumptionTableColumns();
         $consumption = json_decode(file_get_contents("php://input"), true);
-        $consumption = $consumption[0];
+        //$consumption = $consumption[0];
         
         if(!isIdValide($consumption, 'id_user', 'id_user', 'utilisateur')){
             return;
@@ -55,7 +55,7 @@
                              AND id_aliment = '".$consumption['id_aliment']."' AND quantite = '".$consumption['quantite']."'
                              AND date = '".$consumption['date']."'");
 
-        $id = $id[0]['id_conso'];
+        //$id = $id[0]['id_conso'];
         $json = ["location" => $id]; 
         jsonMessage(201, "Consumption succesfully added", $json);
     } 

@@ -13,21 +13,18 @@ function connexion_getValues(){
         data: JSON.stringify(user)
     }).done((returnedUser) => {
         if(returnedUser['status'] == 200){
-            $_SESSION['userSurname'] = returnedUser['user']['prenom'];
-            $_SESSION['userName'] = returnedUser['user']['nom'];
-            $_SESSION['userMail'] = returnedUser['user']['mail'];
-            $_SESSION['userLogin'] = returnedUser['user']['login'];
-            $_SESSION['userBirthday'] = returnedUser['user']['date_naissance'];
-            $_SESSION['userLevel'] = returnedUser['user']['id_niveau'];
-            $_SESSION['userSex'] = returnedUser['user']['sexe'];
-            $_SESSION['id'] = returnedUser['user']['id_user'];
-            $_SESSION['mdp'] = returnedUser['user']['mdp'];
-            
+            $("#hidden_form input[name='userSurname']").val(returnedUser['user']['prenom']);
+            $("#hidden_form input[name='userName']").val(returnedUser['user']['nom']);
+            $("#hidden_form input[name='userMail']").val(returnedUser['user']['mail']);
+            $("#hidden_form input[name='userLogin']").val(returnedUser['user']['login']);
+            $("#hidden_form input[name='userBirthday']").val(returnedUser['user']['date_naissance']);
+            $("#hidden_form input[name='userLevel']").val(returnedUser['user']['id_niveau']);
+            $("#hidden_form input[name='userSex']").val(returnedUser['user']['sexe']);
+            $("#hidden_form input[name='userId']").val(returnedUser['user']['id_user']);
+            // $("#hidden_form .mdp").val(returnedUser['user']['mdp']);
+            $("#hidden_form").submit();
         }
-
-    }
-    );
-    //location.reload();
+    });
 }
 
 function inscription_getValues(){

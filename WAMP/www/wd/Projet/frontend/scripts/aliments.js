@@ -1,10 +1,10 @@
 function aliments_initTable(){
-    $("#aliment").DataTable({
-        pageLength: 7,
+    var table_aliments = $("#aliment").DataTable({
+        pageLength: 9,
         lengthChange: false,
         bInfo: false,
         ajax: {
-            url: "../backend/api/aliments/",
+            url: API_PATH + "/aliments/",
             method: 'GET',
             dataSrc: ''
         },
@@ -48,7 +48,7 @@ function aliments_initTable(){
     });
 
     $.ajax({
-        url: "../backend/api/aliments/",
+        url: API_PATH + "/aliments/",
         method: 'GET',
         dataType: 'json'
     })
@@ -61,5 +61,10 @@ function aliments_initTable(){
 }
 
 function updatePage_aliments(){
-    aliments_initTable();
+    if(!$.fn.DataTable.isDataTable('#aliment')){
+        aliments_initTable();
+    }
+    else{
+        $("#aliment").DataTable().ajax.reload();
+    }
 }

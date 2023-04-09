@@ -10,8 +10,8 @@
         '<nav>
             <div class="profil">
                 <img src="./assets/logo.png"/>
-                <h3>Nom d\'utilisateur</h3>
-                <p>Sous-titre si besoin</p>
+                <h3>Bonjour '.$_SESSION['userSurname'].'</h3>
+                <p>Comment allez-vous ? :)</p>
             </div>
             <ul class="nav">
                 <li>
@@ -39,6 +39,11 @@
                     </a>
                 </li>
             </ul>
+
+            <form id="disconnect" method="POST" style="position: absolute; bottom: 1em; left: 2em;">
+                <input type="hidden" name="disconnect" value="true">
+                <input type="submit" value="Se déconnecter" style="padding: 1em; background-color: red; color: white;">
+            </form>
         </nav>
     </div>';
     }

@@ -21,24 +21,28 @@
             displayPages();
 
             require_once("./pages/aliments.php");
-            require_once("./pages/ajout_repas.php");
+            require_once("./pages/formulaire_repas.php");
             require_once("./pages/mes_repas.php");
-            $test = NULL;
         ?>
     </div>
 </body>
 
 <?php
     function userInit(){
+        if(isset($_POST['disconnect']) AND $_POST['disconnect'] == true){
+            session_unset();
+            session_destroy();
+        }
+
         if(isset($_POST['userId'])){
-            $_SESSION['userSurname'] = $_POST['$userSurname']
-            $_SESSION['userName'] = $_POST['$userName']
-            $_SESSION['userMail'] = $_POST['$userMail']
-            $_SESSION['userLogin'] = $_POST['$userLogin']
-            $_SESSION['userBirthday'] = $_POST['$userBirthday']
-            $_SESSION['userLevel'] = $_POST['$userLevel']
-            $_SESSION['userSex'] = $_POST['$userSex']
-            $_SESSION['id'] = $_POST['$userId']
+            $_SESSION['userSurname'] = $_POST['userSurname'];
+            $_SESSION['userName'] = $_POST['userName'];
+            $_SESSION['userMail'] = $_POST['userMail'];
+            $_SESSION['userLogin'] = $_POST['userLogin'];
+            $_SESSION['userBirthday'] = $_POST['userBirthday'];
+            $_SESSION['userLevel'] = $_POST['userLevel'];
+            $_SESSION['userSex'] = $_POST['userSex'];
+            $_SESSION['id'] = $_POST['userId'];
         }
     }
 

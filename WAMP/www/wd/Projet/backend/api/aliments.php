@@ -19,7 +19,7 @@
         }
 
         $db_aliment = executeSQLRequest(
-            "SELECT aliment.LABEL 'Nom', type.LABEL 'Type' 
+            "SELECT aliment.ID_ALIMENT 'ID', aliment.LABEL 'Nom', type.LABEL 'Type' 
             FROM `aliment` 
                 JOIN `type` ON aliment.TYPE = type.ID_TYPE
             WHERE aliment.ID_ALIMENT = $id"
@@ -39,6 +39,7 @@
         }
 
         $aliment = [
+            "ID" => $db_aliment[0]["ID"],
             "Nom" => $db_aliment[0]["Nom"], 
             "Type" =>$db_aliment[0]["Type"], 
             "Nutriments" => array_merge(...$alimentDetails)
@@ -54,7 +55,6 @@
             array_push($aliments, getAliment($id));
             $id ++;
         }
-        // $aliments_list = executeSQLRequest("SELECT aliment.LABEL 'Aliment' FROM `aliment`");
         return $aliments;
     }
 

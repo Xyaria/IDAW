@@ -4,7 +4,6 @@ $(document).ready(function () {
 
     const nav = document.querySelectorAll(".nav");
     const pages = document.querySelectorAll(".wrapper");
-    const warmColor4 = $(":root").css("--secondary-warm-color-4");
 
     function goToPage(pageLink){
         $(".active").removeClass("active");

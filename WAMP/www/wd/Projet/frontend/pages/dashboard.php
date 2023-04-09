@@ -4,6 +4,7 @@ function dashboard($isConnected){
         echo '<div class="wrapper dashboard hidden">';
     }
     else{
+        echo '<script>$(document).ready(function() {updatePage_dashboard();});</script>';
         echo '<div class="wrapper dashboard">';
     }
     echo   
@@ -15,7 +16,6 @@ function dashboard($isConnected){
                 <p id="calories-count"></p>
                 <p id="calories-message"></p>
             </div>
-            <!--Progression de l\'utilisateur dans son ingestion de calorie-->
         </div>
         <div class="bloc chart">
             <h2>Nutriments du jour</h2>
