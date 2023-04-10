@@ -2,6 +2,8 @@
 
 ## API
 
+Note : Les informations facultatives sont indiquées entre crochets []
+
 ---
 
 > :ROOT/aliments
@@ -20,6 +22,33 @@
 - Récupère une liste d'un nombre d'aliments donné et leur détails à partir de l'aliment à l'ID donnée
 - Body : none
 - Output : détails des :NB aliments spécifiés à partir de l'aliment :ID  
+
+```POST :ROOT/aliments```
+- Crée un aliment à partir des informations données
+- Body : informations de l'aliment
+    ```JSON
+    {
+        "label": {$label},
+        "type": {$id_type}
+    }
+    ```
+- Output : Message de confirmation et ID du nouvel aliment 
+
+```PUT :ROOT/aliments?id=:ID```
+- Modifie un aliment à partir des informations données
+- Body : informations de l'aliment
+    ```JSON
+    {
+        ["label": {$label},]
+        ["type": {$id_type}]
+    }
+    ```
+- Output : Message de confirmation et aliment modifié
+
+```DELETE :ROOT/aliments?id=:ID```
+- Supprime un aliment correspondant à l':ID donné
+- Body : none
+- Output : Message de confirmation
 
 ---
 
