@@ -147,9 +147,8 @@
             <hr/>
             <div>
                 <p>Attention ! Cette action est irréversible. La suppression de votre compte entraîne la suppression de toute information concernant les repas entrés et toute statistique.</p>
-                <button class="red" onclick="window.prompt(\'Êtes-vous sûr de vouloir supprimer votre compte ? Entrez votre mot de passe pour confirmer la suppression\')">Supprimer mon compte</button>
+                <button class="red">Supprimer mon compte</button>
             </div>
-                <!-- Mettre un pop-up de confirmation où il faut entrer le mot de passe pour confirmer la suppression -->
         </div>
     </div>';
 ?>
